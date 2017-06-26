@@ -54,7 +54,7 @@ public class ListeClientsServlet extends HttpServlet {
 		RequestDispatcher dispatcher;
 		
 		ConseillerClientCRUDService clientCrudService = new ConseillerClientCRUDService();
-		List<Client> ListeClients = clientCrudService.lire();
+		List<Client> ListeClients = clientCrudService.lire(1);
 		
 		
 		HttpSession session = request.getSession();
