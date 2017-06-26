@@ -13,34 +13,33 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 import fr.gtm.proxibanque.domain.Client;
-import fr.gtm.proxibanque.domain.Compte;
 import fr.gtm.proxibanque.domain.Conseiller;
 
-public class ConseillerCrudDao extends AccesDao{
+public class GerantCrudDao extends AccesDao {
 
-
-	public boolean ajouterEnBase(Conseiller conseiller) {
+	public boolean ajouter(Conseiller conseiller) {
 		String nom = conseiller.getNom();
 		String prenom = conseiller.getPrenom();
 		String password = conseiller.getPswd();
 		String login = conseiller.getLogin();
-		
-		String insertString = "INSERT INTO `conseillers` ( `nom`, `prenom`, `login`, `password`) VALUES(?,?,?,?)";
-		
+
+		String insertString = "INSERT INTO `conseillers` (  `nom`, `prenom`, `login`, `password`) VALUES(?,?,?,?)";
+
 		try {
 			// Etape 1 : chargement du driver
 			Class.forName("com.mysql.jdbc.Driver");
 			// etape 2 : recuperation de la connection
-			cn = DriverManager.getConnection(url, login, passwd);
+			cn = DriverManager.getConnection(url, log, passwd);
 			// etape 3 : creation d'un statement
-			pst=cn.prepareStatement(insertString);
-			pst.setString(2,nom);
-			pst.setString(3,prenom);
-			pst.setString(4,login);
-			pst.setString(5,password);
-			
+			pst = cn.prepareStatement(insertString);
+
+			pst.setString(1, nom);
+			pst.setString(2, prenom);
+			pst.setString(3, login);
+			pst.setString(4, password);
+
 			// etape 4 = execution requete
-			
+
 			pst.executeUpdate();
 			// etape 5 (parcours resultSet)
 		} catch (SQLException e) {
@@ -52,7 +51,7 @@ public class ConseillerCrudDao extends AccesDao{
 			try {
 				// etape 6 liberer ressources de la memoire
 				cn.close();
-				st.close();
+				pst.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -60,11 +59,11 @@ public class ConseillerCrudDao extends AccesDao{
 		}
 		return true;
 	}
-	
+
 	public boolean supprimerById(int id) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("proxibanque-pu");
 		EntityManager em = emf.createEntityManager();
-		EntityTransaction tx=em.getTransaction();
+		EntityTransaction tx = em.getTransaction();
 		tx.begin();
 		Client client = em.find(Client.class, id);
 		em.remove(client);
@@ -73,45 +72,74 @@ public class ConseillerCrudDao extends AccesDao{
 		emf.close();
 		return true;
 	}
-	
-	public Client getClientById(int id){
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("proxibanque-pu");
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction tx=em.getTransaction();
-		tx.begin();
-		Client client = em.find(Client.class, id);
-		em.remove(client);
-		tx.commit();
-		em.clear();
-		emf.close();
-		return client;
-	}
-	
-	public ArrayList<Client> lireListe() {
-		ArrayList<Client> clients = new ArrayList<Client>();
+
+	public Conseiller lireConseillerById(int id) {
 		String nom = "inconnu";
 		String prenom = "inconnu";
-		String adresse = "inconnu";
-		String email = "inconnu";
-		int id = 0;
-		Client client= null;
+		String login = "inconnu";
+		String paswd = "inconnu";
+		Conseiller conseiller = null;
+
 		try {
 			// Etape 1 : chargement du driver
 			Class.forName("com.mysql.jdbc.Driver");
 			// etape 2 : recuperation de la connection
-			cn = DriverManager.getConnection(url, login, passwd);
+			cn = DriverManager.getConnection(url, log, passwd);
 			// etape 3 : creation d'un statement
 			st = cn.createStatement();
-			String sql = "SELECT * FROM materiel ";
+			String sql = "SELECT * FROM conseillers WHERE id=" + id;
+			// etape 4 = execution requete
+			rs = st.executeQuery(sql);
+			rs.next();
+			// etape 5 (parcours resultSet)
+			nom = rs.getString(2);
+			prenom = rs.getString(3);
+			login = rs.getString(4);
+			paswd = rs.getString(5);
+			conseiller = new Conseiller(nom, prenom, login, paswd);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				// etape 5 liberer ressources de la memoire
+				cn.close();
+				pst.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return conseiller;
+
+	}
+
+	public ArrayList<Conseiller> lireById() {
+		ArrayList<Conseiller> conseillers = new ArrayList<Conseiller>();
+		String nom = "inconnu";
+		String prenom = "inconnu";
+		String login = "inconnu";
+		String paswd = "inconnu";
+		int id = 0;
+		Conseiller conseiller = null;
+		try {
+			// Etape 1 : chargement du driver
+			Class.forName("com.mysql.jdbc.Driver");
+			// etape 2 : recuperation de la connection
+			cn = DriverManager.getConnection(url, log, passwd);
+			// etape 3 : creation d'un statement
+			st = cn.createStatement();
+			String sql = "SELECT * FROM conseillers ";
 			// etape 4 = execution requete
 			rs = st.executeQuery(sql);
 			// etape 5 (parcours resultSet)
 			while (rs.next()) {
 				nom = rs.getString(2);
 				prenom = rs.getString(3);
-				id = rs.getInt(1);
-				client = new Client();
-				clients.add(client);
+				conseiller = new Conseiller(nom,prenom,paswd,login);
+				conseillers.add(conseiller);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -121,31 +149,18 @@ public class ConseillerCrudDao extends AccesDao{
 			try {
 				// etape 5 liberer ressources de la memoire
 				cn.close();
-				st.close();
+				pst.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
-		return clients;
+		return conseillers;
 	}
-	
-	public boolean modifierClient(int id, Client clientNew){
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("proxibanque-pu");
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction tx=em.getTransaction();
-		tx.begin();
-		Client client = em.find(Client.class, id);
-		client.setAdresse(clientNew.getAdresse());
-		client.setEmail(clientNew.getEmail());
-		client.setNom(clientNew.getNom());
-		client.setPrenom(clientNew.getNom());
-		em.refresh(client);
-		tx.commit();
-		em.clear();
-		emf.close();
+
+	public boolean modifierClient(int id, Client clientNew) {
+		//TODO
 		return true;
-		
+
 	}
-	
-	
+
 }

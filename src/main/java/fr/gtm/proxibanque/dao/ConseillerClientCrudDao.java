@@ -14,34 +14,33 @@ import javax.persistence.Persistence;
 
 import fr.gtm.proxibanque.domain.Client;
 import fr.gtm.proxibanque.domain.Compte;
+import fr.gtm.proxibanque.domain.Conseiller;
 
-public class ClientCrudDao extends AccesDao{
+public class ConseillerClientCrudDao extends AccesDao{
 
 
-	public boolean ajouterEnBase(Client client) {
+	public boolean ajout(Client client) {
 		String nom = client.getNom();
 		String prenom = client.getPrenom();
 		String adresse = client.getAdresse();
 		String email = client.getEmail();
-		int id= client.getId();
-		int idCompteCourant = client.getCompteCourant().getId();
-		int idCompteEpargne = client.getCompteEpargne().getId();
+				int idConseiller=client.getIdConseiller();
 		
-		String insertString = "INSERT INTO `clients` ( `nom`, `prenom`, `adresse`, `email`, `idCompteCourant`,`idCompteEpargne`) VALUES(?,?,?,?,?,?)";
+		String insertString = "INSERT INTO `clients` ( `nom`, `prenom`, `adresse`, `email`, `idConseiller`) VALUES(?,?,?,?,?)";
 		
 		try {
 			// Etape 1 : chargement du driver
 			Class.forName("com.mysql.jdbc.Driver");
 			// etape 2 : recuperation de la connection
-			cn = DriverManager.getConnection(url, login, passwd);
+			cn = DriverManager.getConnection(url, log, passwd);
 			// etape 3 : creation d'un statement
 			pst=cn.prepareStatement(insertString);
-			pst.setString(2,nom);
-			pst.setString(3,prenom);
-			pst.setString(4,adresse);
-			pst.setString(5,email);
-			pst.setInt(5, idCompteCourant);
-			pst.setInt(6, idCompteEpargne);
+			pst.setString(1,nom);
+			pst.setString(2,prenom);
+			pst.setString(3,adresse);
+			pst.setString(4,email);
+			pst.setInt(5, idConseiller);
+			
 			
 			// etape 4 = execution requete
 			
@@ -56,7 +55,7 @@ public class ClientCrudDao extends AccesDao{
 			try {
 				// etape 6 liberer ressources de la memoire
 				cn.close();
-				st.close();
+				pst.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -66,28 +65,64 @@ public class ClientCrudDao extends AccesDao{
 	}
 	
 	public boolean supprimerById(int id) {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("proxibanque-pu");
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction tx=em.getTransaction();
-		tx.begin();
-		Client client = em.find(Client.class, id);
-		em.remove(client);
-		tx.commit();
-		em.clear();
-		emf.close();
-		return true;
+		//TODO
+		return false;
 	}
 	
 	public Client getClientById(int id){
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("proxibanque-pu");
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction tx=em.getTransaction();
-		tx.begin();
-		Client client = em.find(Client.class, id);
-		em.remove(client);
-		tx.commit();
-		em.clear();
-		emf.close();
+		
+		String nom = "inconnu";
+		String prenom = "inconnu";
+		String adresse = "inconnu";
+		String email = "inconnu";
+		int idCC = 0;
+		int idCE = 0;
+		Compte compteCourant=null;
+		Compte compteEpargne=null;
+		int idConseiller=0;
+
+
+		Client client = null;
+		ConseillerCompteCRUDDao conseillerCompteCRUDDao = new ConseillerCompteCRUDDao();
+		
+		try {
+			// Etape 1 : chargement du driver
+			Class.forName("com.mysql.jdbc.Driver");
+			// etape 2 : recuperation de la connection
+			cn = DriverManager.getConnection(url, log, passwd);
+			// etape 3 : creation d'un statement
+			st = cn.createStatement();
+			String sql = "SELECT * FROM conseillers WHERE id=" + id;
+			// etape 4 = execution requete
+			rs = st.executeQuery(sql);
+			rs.next();
+			// etape 5 (parcours resultSet)
+			nom = rs.getString(2);
+			prenom = rs.getString(3);
+			adresse = rs.getString(4);
+			email = rs.getString(5);
+			idCC = rs.getInt(6);
+			idCE = rs.getInt(7);
+			compteCourant=conseillerCompteCRUDDao.lireById(idCC);
+			compteEpargne=conseillerCompteCRUDDao.lireById(idCE);
+			idConseiller=rs.getInt(8);
+			client = new Client(nom,prenom,adresse,email,compteCourant,compteEpargne,idConseiller);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				// etape 5 liberer ressources de la memoire
+				cn.close();
+				st.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
 		return client;
 	}
 	
@@ -103,7 +138,7 @@ public class ClientCrudDao extends AccesDao{
 			// Etape 1 : chargement du driver
 			Class.forName("com.mysql.jdbc.Driver");
 			// etape 2 : recuperation de la connection
-			cn = DriverManager.getConnection(url, login, passwd);
+			cn = DriverManager.getConnection(url, log, passwd);
 			// etape 3 : creation d'un statement
 			st = cn.createStatement();
 			String sql = "SELECT * FROM materiel ";
@@ -125,7 +160,7 @@ public class ClientCrudDao extends AccesDao{
 			try {
 				// etape 5 liberer ressources de la memoire
 				cn.close();
-				st.close();
+				pst.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -134,19 +169,7 @@ public class ClientCrudDao extends AccesDao{
 	}
 	
 	public boolean modifierClient(int id, Client clientNew){
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("proxibanque-pu");
-		EntityManager em = emf.createEntityManager();
-		EntityTransaction tx=em.getTransaction();
-		tx.begin();
-		Client client = em.find(Client.class, id);
-		client.setAdresse(clientNew.getAdresse());
-		client.setEmail(clientNew.getEmail());
-		client.setNom(clientNew.getNom());
-		client.setPrenom(clientNew.getNom());
-		em.refresh(client);
-		tx.commit();
-		em.clear();
-		emf.close();
+		//TODO
 		return true;
 		
 	}

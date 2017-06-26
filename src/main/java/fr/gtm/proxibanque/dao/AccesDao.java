@@ -6,8 +6,8 @@ import java.sql.Statement;
 
 public class AccesDao {
 	// information d'accces a la base de donnees
-	String url = "jdbc:mysql://localhost/formation";
-	String login = "root";
+	String url = "jdbc:mysql://localhost/proxibanque";
+	String log = "root";
 //	String passwd = "root";
 	String passwd = "";
 	Connection cn = null;

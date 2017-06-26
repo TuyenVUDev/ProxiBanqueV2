@@ -21,11 +21,25 @@ public class Client extends Personne{
 
 
 	public Client(String nom, String prenom, String adresse,
-			String email) {
+			String email,Compte compteCourant, Compte compteEpargne, int idConseiller) {
 		this.adresse = adresse;
 		this.email = email;
 		this.setNom(nom);
 		this.setPrenom(prenom);
+		this.compteCourant= compteCourant;
+		this.compteEpargne=compteEpargne;
+		this.idConseiller = idConseiller;
+	}
+	
+	public Client(String nom, String prenom, String adresse,
+			String email, int idConseiller) {
+		this.adresse = adresse;
+		this.email = email;
+		this.setNom(nom);
+		this.setPrenom(prenom);
+		this.compteCourant= null;
+		this.compteEpargne=null;
+		this.idConseiller = idConseiller;
 	}
 	
 
@@ -93,13 +107,14 @@ public class Client extends Personne{
 		this.idConseiller = idConseiller;
 	}
 
-
 	@Override
 	public String toString() {
-		return "Client [id=" + id + ", nom=" + getNom() + ", prenom=" + getPrenom() + ", adresse=" + adresse + ", email=" + email
-				+ "]";
+		return "Client [adresse=" + adresse + ", email=" + email + ", compteEpargne=" + compteEpargne
+				+ ", compteCourant=" + compteCourant + ", idConseiller=" + idConseiller + "]";
 	}
 
+
+	
 	
 	
 

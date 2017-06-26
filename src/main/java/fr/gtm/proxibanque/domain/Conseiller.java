@@ -10,23 +10,23 @@ public class Conseiller extends Personne{
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private int id;
-	private String pswd,login;
+	private int idConseiller;
+	private String password,login;
 	private ArrayList<Client> listeClients;
 	
 	
 	
 	public int getId() {
-		return id;
+		return idConseiller;
 	}
 	public void setId(int id) {
-		this.id = id;
+		this.idConseiller = id;
 	}
 	public String getPswd() {
-		return pswd;
+		return password;
 	}
 	public void setPswd(String pswd) {
-		this.pswd = pswd;
+		this.password = pswd;
 	}
 	public String getLogin() {
 		return login;
@@ -44,9 +44,9 @@ public class Conseiller extends Personne{
 	
 	
 	
-	public Conseiller(String nom, String prenom, String pswd, String login) {
+	public Conseiller(String nom, String prenom, String login, String pswd) {
 		super();
-		this.pswd = pswd;
+		this.password = pswd;
 		this.login = login;
 		this.setNom(nom);
 		this.setPrenom(prenom);
@@ -56,7 +56,7 @@ public class Conseiller extends Personne{
 	
 	@Override
 	public String toString() {
-		return "Conseiller [id=" + id + ", nom=" + this.getNom() + ", prenom=" + getPrenom() +  ", pswd=" + pswd + ", login=" + login + "]";
+		return "Conseiller [id=" + idConseiller + ", nom=" + this.getNom() + ", prenom=" + getPrenom() +  ", pswd=" + password + ", login=" + login + "]";
 	}
 	
 	
