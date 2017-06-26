@@ -33,19 +33,52 @@ div#menu1{
 	padding-right: 0px;
 }
 
+li{
+	border-style: solid;
+    border-width: 4px 4px 4px 4px;
+	border-top-color: rgb(36, 58, 85);
+	border-right-color: rgb(24, 28, 57);
+	border-bottom-color: rgb(9, 14, 20);
+	border-left-color: rgb(36, 58, 85);
+	background-color: rgb(121, 184, 255);
+}
+
+li.act{
+	background-color: rgb(22, 44, 69);
+	border-color: rgb(22, 44, 69);
+	color:white;
+}
+
+li.act>a:hover{
+	background-color: rgb(22, 44, 69);
+	border-color: rgb(22, 44, 69);
+	color:white;
+}
+
+.navbar-inverse .navbar-nav > li.act > a{
+	color:white;
+}
+
 #form1{
-	padding-bottom :5%; 
+	padding-bottom :1%; 
 	padding-left : 5%;
 	padding-right : 10%;
-	padding-top :5%;
+	padding-top :1%;
 	margin-top : 1%;
 	margin-right : 1%;
 	margin-left : 1%;
-	background-color :rgb(57,91,131);
+	color: rgb(30,30,30);
+	background-image: url("images/degrade2.jpg");
+	background-size: adapt;
+}
+
+#cb1, #cb2{
+	margin: 10px 0 0;
 }
 
 #supp{
-	background-color :rgb(57,91,131);
+	background-image: url("images/degrade2.jpg");
+	background-size: adapt;
 	margin-top : 1%;
 	margin-right : 1%;
 	margin-left : 1%;
@@ -86,6 +119,16 @@ table#listeclient{
 	margin-right : 1%;
 	margin-left : 1%;
 	font-style : "Helvetica Neue",Helvetica,Arial,sans-serif;
+	background-image: url("images/degrade2.jpg");
+	background-size: adapt;
+}
+
+table#listeclient>thead>tr{
+	color: black;
+}
+
+table#listeclient>tbody>td{
+	text-decoration: none;
 }
 
 td#modifier{
@@ -95,9 +138,17 @@ td#modifier{
 	color: black;
 }
 
+td#modifier>a{
+	color: black;
+}
+
 td#supprimer{
 	background-color:red;
 	text-align: center;
 	border-style: solid;
+	color: black;
+}
+
+td#supprimer>a{
 	color: black;
 }

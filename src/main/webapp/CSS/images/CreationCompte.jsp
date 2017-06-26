@@ -17,45 +17,42 @@
 <div class="container-fluid" id=menu1>
 	<div class="row" id=bando>
 		<div class="col-lg-12" id=bandoint1>
-			<img src="images/Proxibanque.jpg" alt="proxilogo" id=logo>
+			<img src="CSS/images/Proxibanque.jpg" alt="proxilogo" id=logo>
 		</div>
 	</div>
 	<nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Créer un nouveau Client</a></li>
       <li><a href="ListeClients.jsp">Liste des Clients</a></li>
-      <li><a href="#">Effectuer un Virement</a></li>
+      <li><a href="CreationClient.html">Créer un nouveau Client</a></li>
+      <li><a href="Virement.jsp">Effectuer un Virement</a></li>
+      <li class="act"><a href="#">Ajouter Comptes au Client</a></li>
     </ul>
   </div>
 </nav>
 <form class="form-horizontal" id=form1 action ="AjoutClientServlet" method = POST>
   <div class="form-group">
-    <label class="control-label col-sm-2" for="compteCourant">Compte Courant</label>
-    <div class="col-sm-10">
-      <input type="checkbox" name="compteCourant">
+    <label class="control-label col-sm-2" for="compteCourant">Compte Courant :</label>
+    <div class="col-sm-1">
+      <input type="checkbox" name="compteCourant" id=cb1>
     </div>
-  </div>
-  <div class="form-group">
     <label class="control-label col-sm-2" for="soldecc">Solde Compte Courant :</label>
-    <div class="col-sm-10"> 
+    <div class="col-sm-5"> 
       <input type="text" class="form-control" name="soldecc">
-    </div>
+  	</div>
   </div>
   <div class="form-group">
-    <label class="control-label col-sm-2" for="adresse">Compte Epargne</label>
-    <div class="col-sm-10"> 
-      <input type="checkbox" name="compteEpargne">
+     <label class="control-label col-sm-2" for="adresse">Compte Epargne :</label>
+    <div class="col-sm-1"> 
+      <input type="checkbox" name="compteEpargne" id=cb2>
     </div>
-  </div>
-    <div class="form-group">
-    <label class="control-label col-sm-2" for="email">Solde Compte Courant :</label>
-    <div class="col-sm-10"> 
+       <label class="control-label col-sm-2" for="email">Solde Compte Courant :</label>
+    <div class="col-sm-5"> 
      <input type="text" class="form-control" name="soldecc">
     </div>
   </div>
   <div class="form-group"> 
-    <div class="col-sm-offset-2 col-sm-10">
+    <div class="col-sm-offset-10 col-sm-2">
       <button type="submit" class="btn btn-success">Valider</button>
     </div>
   </div>

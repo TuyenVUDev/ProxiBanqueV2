@@ -4,8 +4,14 @@
 
 <web-app>
 	<display-name>ProxibanqueSI</display-name>
+	<servlet>
+		<servlet-name>ListeClientsServlet</servlet-name>
+		<display-name>ListeClientsServlet</display-name>
+		<description></description>
+		<servlet-class>fr.gtm.proxibanque.presentation.ListeClientsServlet</servlet-class>
+	</servlet>
 	<welcome-file-list>
-		<welcome-file>CreationClient.html</welcome-file>
+		<welcome-file>ListeClients.jsp</welcome-file>
 	</welcome-file-list>
 
 
