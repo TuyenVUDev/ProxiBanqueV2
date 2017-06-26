@@ -1,10 +1,10 @@
+<!DOCTYPE>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="fr.gtm.proxibanque.domain.Client"%>
 <%@ page import="fr.gtm.proxibanque.domain.Compte"%> 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
-<!DOCTYPE>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <meta charset="iso-8859-1"/>
@@ -12,9 +12,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="CSS/Style.css">
-<title>index</title>
+<title>ListeCLients</title>
 </head>
-<body>
+<body id=Lclients>
 <div class="container-fluid" id=menu1>
 	<div class="row" id=bando>
 		<div class="col-lg-12" id=bandoint1>
@@ -24,16 +24,15 @@
 	<nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Liste de Client</a></li>
-      <li><a href="#">Page 1</a></li>
-      <li><a href="#">Page 2</a></li>
-      <li><a href="#">Page 3</a></li>
+      <li class="active"><a href="#">Liste des Clients</a></li>
+      <li><a href="CreationClient.html">Créer un nouveau Client</a></li>
+      <li><a href="#">Effectuer un Virement</a></li>
     </ul>
   </div>
 </nav>
 <div class="container-fluid">
 	<div class="row" id = table1>
-	<table class="table table-condensed">
+	<table class="table table-bordered table-inverse" id=listeclient>
 	    <thead>
 	      <tr>
 	        <th>Nom</th>
@@ -55,7 +54,8 @@
 					    <td><c:out value="${Client.adresse}"/></td>
 					    <td><c:out value="${Client.compteCourant.id} : ${Client.compteCourant.solde}"/></td>
 					    <td><c:out value="${Client.compteEpargne.id} : ${Client.compteEpargne.solde}"/></td>
-					    <td><a href=""><button</a>
+					    <td id=modifier><a href="ModificationClient.jsp?id=${Client.idClient}">Modifier</a></td>
+					    <td id=supprimer><a href="">Supprimer</a></td>
 					    </tr>
 		</c:forEach>
 	    </tbody>

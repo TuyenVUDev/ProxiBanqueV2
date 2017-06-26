@@ -4,6 +4,12 @@ body{
 	color: black;
 }
 
+body#Lclients{
+	background-color: Black ;
+	font-style: Georgia;
+	color: white;
+}
+
 img#logo{
 
 	display:block;
@@ -27,7 +33,7 @@ div#menu1{
 	padding-right: 0px;
 }
 
-form#form1{
+#form1{
 	padding-bottom :5%; 
 	padding-left : 5%;
 	padding-right : 10%;
@@ -36,6 +42,24 @@ form#form1{
 	margin-right : 1%;
 	margin-left : 1%;
 	background-color :rgb(57,91,131);
+}
+
+#supp{
+	background-color :rgb(57,91,131);
+	margin-top : 1%;
+	margin-right : 1%;
+	margin-left : 1%;
+	font-weight: bold;
+}
+
+#ComptCour,#ComptEp{
+	padding-top: 7px;
+	text-align: right;
+}
+
+#buttsupp1, #buttsupp2{
+		text-align: left;
+		padding-top: 0px;
 }
 
 .navbar-inverse .navbar-nav>li>a {
@@ -50,4 +74,29 @@ form#form1{
 
 .navbar {
 	border-radius: 0px;
+}
+
+table#listeclient{
+	padding-bottom :5%; 
+	padding-left : 5%;
+	padding-right : 10%;
+	padding-top :5%;
+	margin-top : 1%;
+	margin-right : 1%;
+	margin-left : 1%;
+	font-style : "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+td#modifier{
+	background-color:orange;
+	text-align: center;
+	border-style: solid;
+	color: black;
+}
+
+td#supprimer{
+	background-color:red;
+	text-align: center;
+	border-style: solid;
+	color: black;
 }
