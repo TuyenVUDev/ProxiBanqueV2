@@ -116,7 +116,7 @@ public class GerantCrudDao extends AccesDao {
 
 	}
 
-	public ArrayList<Conseiller> lireById() {
+	public ArrayList<Conseiller> lireListe() {
 		ArrayList<Conseiller> conseillers = new ArrayList<Conseiller>();
 		String nom = "inconnu";
 		String prenom = "inconnu";
@@ -217,11 +217,8 @@ public class GerantCrudDao extends AccesDao {
 		return true;
 	}
 	
-	public boolean modifierClient(int id, Client clientNew) {
-		//TODO
-		return true;
 
-	}
+
 
 	
 	

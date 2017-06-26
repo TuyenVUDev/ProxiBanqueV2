@@ -13,21 +13,22 @@ public class Client extends Personne{
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	private String adresse, email;
-	private Compte compteEpargne;
-	private Compte compteCourant;
+	private int idCompteEpargne;
+	private int idCompteCourant;
 	private int idConseiller;
 
 	// constructeur
 
 
-	public Client(String nom, String prenom, String adresse,
-			String email,Compte compteCourant, Compte compteEpargne, int idConseiller) {
+	public Client(int id,String nom, String prenom, String adresse,
+			String email,int idCompteCourant, int idCompteEpargne, int idConseiller) {
+		this.id=id;
 		this.adresse = adresse;
 		this.email = email;
 		this.setNom(nom);
 		this.setPrenom(prenom);
-		this.compteCourant= compteCourant;
-		this.compteEpargne=compteEpargne;
+		this.idCompteCourant= idCompteCourant;
+		this.idCompteEpargne=idCompteEpargne;
 		this.idConseiller = idConseiller;
 	}
 	
@@ -37,8 +38,8 @@ public class Client extends Personne{
 		this.email = email;
 		this.setNom(nom);
 		this.setPrenom(prenom);
-		this.compteCourant= null;
-		this.compteEpargne=null;
+		this.idCompteCourant= 0;
+		this.idCompteEpargne=0;
 		this.idConseiller = idConseiller;
 	}
 	
@@ -77,26 +78,25 @@ public class Client extends Personne{
 
 	
 
-	public Compte getCompteEpargne() {
-		return compteEpargne;
-	}
-
-
-	public void setCompteEpargne(Compte compteEpargne) {
-		this.compteEpargne = compteEpargne;
-	}
-
-
-	public Compte getCompteCourant() {
-		return compteCourant;
-	}
-
-
-	public void setCompteCourant(Compte compteCourant) {
-		this.compteCourant = compteCourant;
-	}
+	
 
 	
+
+	public int getIdCompteEpargne() {
+		return idCompteEpargne;
+	}
+
+	public void setIdCompteEpargne(int idCompteEpargne) {
+		this.idCompteEpargne = idCompteEpargne;
+	}
+
+	public int getIdCompteCourant() {
+		return idCompteCourant;
+	}
+
+	public void setIdCompteCourant(int idCompteCourant) {
+		this.idCompteCourant = idCompteCourant;
+	}
 
 	public int getIdConseiller() {
 		return idConseiller;
@@ -109,8 +109,8 @@ public class Client extends Personne{
 
 	@Override
 	public String toString() {
-		return "Client [id=" + id + ", nom=" + this.getNom()+ ", prenom=" +this.getPrenom()+", adresse=" + adresse + ", email=" + email + ", compteEpargne=" + compteEpargne
-				+ ", compteCourant=" + compteCourant + ", idConseiller=" + idConseiller + "]";
+		return "Client [id=" + id + ", nom=" + this.getNom()+ ", prenom=" +this.getPrenom()+", adresse=" + adresse + ", email=" + email + ", idCompteEpargne=" + idCompteEpargne
+				+ ", idCompteCourant=" + idCompteCourant + ", idConseiller=" + idConseiller + "]";
 	}
 
 	

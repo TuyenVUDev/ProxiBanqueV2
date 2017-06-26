@@ -27,7 +27,9 @@ ConseillerClientCRUDDao conseillerClientCrudDao = new ConseillerClientCRUDDao();
 	public ArrayList<Client> lire() {
 		return conseillerClientCrudDao.lireListe();
 	}
-	
+	public Client modifier(int id , Client client){
+		return conseillerClientCrudDao.modifierClient();
+	}
 	
 	public boolean purge() {
 		return conseillerClientCrudDao.purgeTable();

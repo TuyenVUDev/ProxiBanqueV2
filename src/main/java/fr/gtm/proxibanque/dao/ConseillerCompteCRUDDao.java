@@ -2,7 +2,9 @@ package fr.gtm.proxibanque.dao;
 
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
+import fr.gtm.proxibanque.domain.Client;
 import fr.gtm.proxibanque.domain.Compte;
 
 public class ConseillerCompteCRUDDao extends AccesDao{
@@ -85,6 +87,49 @@ public class ConseillerCompteCRUDDao extends AccesDao{
 			}
 		}
 		return compte;
+	}
+	
+	public ArrayList<Compte> lireListe(){
+		
+		ArrayList<Compte> comptes = new ArrayList<Compte>();
+		int id = 0;
+		float solde = 0;
+		String typeDeCompte = "inconnu";
+		ConseillerCompteCRUDDao conseillerCompteCRUDDao = new ConseillerCompteCRUDDao();
+		Compte compte = null;
+		try {
+			// Etape 1 : chargement du driver
+			Class.forName("com.mysql.jdbc.Driver");
+			// etape 2 : recuperation de la connection
+			cn = DriverManager.getConnection(url, log, passwd);
+			// etape 3 : creation d'un statement
+			st = cn.createStatement();
+			String sql = "SELECT * FROM comptes ";
+			// etape 4 = execution requete
+			rs = st.executeQuery(sql);
+			// etape 5 (parcours resultSet)
+			while (rs.next()) {
+				id = rs.getInt(1);
+				typeDeCompte = rs.getString(2);
+				solde = rs.getFloat(3);
+				compte = new Compte(id, typeDeCompte, solde);
+				comptes.add(compte);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				// etape 5 liberer ressources de la memoire
+				cn.close();
+				st.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return comptes;
+		
 	}
 	
 	public boolean suppression(int id) {

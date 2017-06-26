@@ -33,10 +33,17 @@ public class Compte {
 		this.typeDeCompte = typeDeCompte;
 		this.solde = solde;
 	}
+	public Compte(int id, String typeDeCompte, float solde) {
+		super();
+		this.id=id;
+		this.typeDeCompte = typeDeCompte;
+		this.solde = solde;
+	}
 	@Override
 	public String toString() {
-		return "Compte [typeDeCompte=" + typeDeCompte + ", solde=" + solde + "]";
+		return "Compte [id=" + id + ", typeDeCompte=" + typeDeCompte + ", solde=" + solde + "]";
 	}
+
 	
 	
 }

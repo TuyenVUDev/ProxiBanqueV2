@@ -1,5 +1,7 @@
 package fr.gtm.proxibanque.service;
 
+import java.util.ArrayList;
+
 import fr.gtm.proxibanque.dao.GerantCrudDao;
 import fr.gtm.proxibanque.domain.Client;
 import fr.gtm.proxibanque.domain.Conseiller;
@@ -17,8 +19,10 @@ public class GerantCRUDService implements CRUDInterface {
 	public Conseiller lireConseillerById(int id) {
 		return gerantCrudDao.lireConseillerById(id);
 	}
-	
-	
+	public ArrayList<Conseiller> lire(){
+		return gerantCrudDao.lireListe();
+	}
+ 	
 	public boolean purge() {
 		return gerantCrudDao.purgeTable();
 	}

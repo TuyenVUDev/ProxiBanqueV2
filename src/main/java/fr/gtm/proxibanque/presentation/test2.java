@@ -18,54 +18,51 @@ public class test2 {
 
 	public static void main(String[] args) {
 
-		
 		Conseiller conseiller1 = new Conseiller("nom1", "prenom1", "login1", "pswd1");
 		Conseiller conseiller2 = new Conseiller("nom2", "prenom2", "login2", "pswd2");
 		Gerant gerant = new Gerant("nom", "prenom", "pswd", "login");
 		Compte compteCourant = new Compte("courant", 0);
 		Compte compteEpargne = new Compte("epargne", 0);
-		Client client1 = new Client("nom1", "prenom1", "adresse1", "email1",compteCourant,compteEpargne,1);
-		Client client2 = new Client("nom2", "prenom2", "adresse2", "email2",compteCourant,compteEpargne,1);
-
-		
+		Client client1 = new Client("nom1", "prenom1", "adresse1", "email1", 1);
+		Client client2 = new Client("nom2", "prenom2", "adresse2", "email2", 1);
 
 		// declaration inst. des classes service
 		GerantCRUDService gerantCRUDService = new GerantCRUDService();
 		ConseillerClientCRUDService conseillerClientCrudService = new ConseillerClientCRUDService();
-		ConseillerCompteCRUDService conseillerCompteCRUDService=new ConseillerCompteCRUDService();
+		ConseillerCompteCRUDService conseillerCompteCrudService = new ConseillerCompteCRUDService();
 		ConseillerService conseillerService = new ConseillerService();
 
 		// nettoyage des tables
 		gerantCRUDService.purge();
 		conseillerClientCrudService.purge();
-		conseillerCompteCRUDService.purge();
+		conseillerCompteCrudService.purge();
 
-		//ajout d'un conseiller
+		// ajout d'un conseiller
 		gerantCRUDService.ajout(conseiller1);
 		gerantCRUDService.ajout(conseiller2);
-		
-		//ajout d'un compte courant
-		conseillerCompteCRUDService.ajout(compteCourant);
-		conseillerCompteCRUDService.ajout(compteEpargne);
-		//ajout d'un client
+
+		// ajout d'un compte courant
+		conseillerCompteCrudService.ajout(compteCourant);
+		conseillerCompteCrudService.ajout(compteEpargne);
+		// ajout d'un client
 		conseillerClientCrudService.ajout(client1);
 		conseillerClientCrudService.ajout(client2);
 
-//		conseillerClientCrudService.supprimer(1);
-//		conseillerCompteCRUDService.supprimer(1);
-//		conseillerClientCrudService.ajout(client);
-		//	System.out.println(conseillerClientCrudService.lireClientById(1));
-//		gerantCRUDService.supprimer(1);
-//		System.out.println(conseillerCompteCRUDService.lireCompteById(1));
-		System.out.println(conseillerClientCrudService.lireClientById(1));
-//		conseillerService.associationCompte(compteCourant, 1);
-//		System.out.println(conseillerClientCrudService.lire());		
-				
-				
-						
+		// conseillerClientCrudService.supprimer(1);
+		// conseillerCompteCRUDService.supprimer(1);
+		// conseillerClientCrudService.ajout(client);
+		// System.out.println(conseillerClientCrudService.lireClientById(1));
+		// gerantCRUDService.supprimer(1);
+		// System.out.println(conseillerCompteCRUDService.lireCompteById(1));
+		conseillerService.associationCompte(1, 1);
+		System.out.println(conseillerClientCrudService.lire());
+		System.out.println(conseillerCompteCrudService.lire());
+		System.out.println(gerantCRUDService.lire());
+		// System.out.println(conseillerClientCrudService.lire());
+
 		// ClientCrudService clientCrudService = new ClientCrudService();
 		// clientCrudService.ajout(client);
-//		client.setIdConseiller(conseiller.getId());
+		// client.setIdConseiller(conseiller.getId());
 
 	}
 
