@@ -18,16 +18,16 @@
 <div class="container-fluid" id=menu1>
 	<div class="row" id=bando>
 		<div class="col-lg-12" id=bandoint1>
-			<img src="images/Proxibanque.jpg" alt="proxilogo" id=logo>
+			<img src="CSS/images/Proxibanque.jpg" alt="proxilogo" id=logo>
 		</div>
 	</div>
 	<nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Modification du Client: ${Client.prenom} ${Client.nom}</a></li>
       <li><a href="ListeClients.jsp">Liste des Clients</a></li>
       <li><a href="CreationClient.html">Créer un nouveau Client</a></li>
-      <li><a href="#">Effectuer un Virement</a></li>
+      <li><a href="Virement.jsp">Effectuer un Virement</a></li>
+      <li class="act"><a href="#">Modification du Client: ${Client.prenom} ${Client.nom}</a></li>
     </ul>
   </div>
 </nav>
@@ -61,7 +61,7 @@
     </div>
   </div>
   <div class="form-group"> 
-    <div class="col-sm-offset-2 col-sm-10">
+    <div class="col-sm-offset-10 col-sm-2">
       <button type="submit" class="btn btn-warning">Modification</button>
     </div>
   </div>

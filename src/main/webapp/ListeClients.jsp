@@ -18,15 +18,15 @@
 <div class="container-fluid" id=menu1>
 	<div class="row" id=bando>
 		<div class="col-lg-12" id=bandoint1>
-			<img src="images/Proxibanque.jpg" alt="proxilogo" id=logo>
+			<img src="CSS/images/Proxibanque.jpg" alt="proxilogo" id=logo>
 		</div>
 	</div>
 	<nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Liste des Clients</a></li>
+      <li class="act"><a href="#">Liste des Clients</a></li>
       <li><a href="CreationClient.html">Créer un nouveau Client</a></li>
-      <li><a href="#">Effectuer un Virement</a></li>
+      <li><a href="Virement.jsp">Effectuer un Virement</a></li>
     </ul>
   </div>
 </nav>
@@ -41,8 +41,8 @@
 	        <th>Adresse</th>
 	        <th>Compte Courant</th>
 	        <th>Compte Epargne</th>
-	        <th>Modifier</th>
-	        <th>Supprimer</th>
+	        <th></th>
+	        <th></th>
 	      </tr>
 	    </thead>
 	    <tbody>
