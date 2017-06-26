@@ -109,10 +109,11 @@ public class Client extends Personne{
 
 	@Override
 	public String toString() {
-		return "Client [adresse=" + adresse + ", email=" + email + ", compteEpargne=" + compteEpargne
+		return "Client [id=" + id + ", nom=" + this.getNom()+ ", prenom=" +this.getPrenom()+", adresse=" + adresse + ", email=" + email + ", compteEpargne=" + compteEpargne
 				+ ", compteCourant=" + compteCourant + ", idConseiller=" + idConseiller + "]";
 	}
 
+	
 
 	
 	

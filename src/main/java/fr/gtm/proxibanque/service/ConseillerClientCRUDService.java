@@ -22,7 +22,7 @@ ConseillerClientCRUDDao conseillerClientCrudDao = new ConseillerClientCRUDDao();
 
 
 	public Client lireClientById(int id) {
-		return conseillerClientCrudDao.getClientById(id);
+		return conseillerClientCrudDao.lireClientById(id);
 	}
 	public ArrayList<Client> lire() {
 		return conseillerClientCrudDao.lireListe();
