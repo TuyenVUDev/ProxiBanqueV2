@@ -1,6 +1,11 @@
-<!DOCTYPE html>
+<!DOCTYPE>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ page import="java.util.ArrayList"%>
+<%@ page import="fr.gtm.proxibanque.domain.Client"%>
+<%@ page import="fr.gtm.proxibanque.domain.Compte"%> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
-<head>
 <meta charset="iso-8859-1"/>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -26,32 +31,32 @@
 </nav>
 <form class="form-horizontal" id=form1 action ="AjoutClientServlet" method = POST>
   <div class="form-group">
-    <label class="control-label col-sm-2" for="nom">Nom :</label>
+    <label class="control-label col-sm-2" for="compteCourant">Compte Courant</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" placeholder="nom" name="nom" value="Vu">
+      <input type="checkbox" name="compteCourant">
     </div>
   </div>
   <div class="form-group">
-    <label class="control-label col-sm-2" for="prenom">Prénom :</label>
+    <label class="control-label col-sm-2" for="soldecc">Solde Compte Courant :</label>
     <div class="col-sm-10"> 
-      <input type="text" class="form-control" placeholder="prenom" name="prenom" value="Tuyen">
+      <input type="text" class="form-control" name="soldecc">
     </div>
   </div>
   <div class="form-group">
-    <label class="control-label col-sm-2" for="adresse">Adresse :</label>
+    <label class="control-label col-sm-2" for="adresse">Compte Epargne</label>
     <div class="col-sm-10"> 
-      <input type="text" class="form-control" placeholder="adresse" name = "adresse" value="21 quai Victor Augagneur">
+      <input type="checkbox" name="compteEpargne">
     </div>
   </div>
     <div class="form-group">
-    <label class="control-label col-sm-2" for="email">Email :</label>
+    <label class="control-label col-sm-2" for="email">Solde Compte Courant :</label>
     <div class="col-sm-10"> 
-      <input type="email" class="form-control" placeholder="email" name ="email" value="tuyentown@gmail.com">
+     <input type="text" class="form-control" name="soldecc">
     </div>
   </div>
   <div class="form-group"> 
     <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-success">Création</button>
+      <button type="submit" class="btn btn-success">Valider</button>
     </div>
   </div>
 </form>
