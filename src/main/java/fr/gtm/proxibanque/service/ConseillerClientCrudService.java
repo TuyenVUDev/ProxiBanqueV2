@@ -7,17 +7,25 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import fr.gtm.proxibanque.dao.ConseillerCrudDao;
+import fr.gtm.proxibanque.dao.ConseillerClientCrudDao;
 
-public class ConseillerCrudService implements CrudInterface {
+public class ConseillerClientCrudService implements CrudInterface {
 
 
-	ConseillerCrudDao
+ConseillerClientCrudDao conseillerClientCrudDao = new ConseillerClientCrudDao();
 	
-	public boolean ajout(Conseiller conseiller) {
-		return false;
+	
+	public boolean ajout(Client client) {
+		conseillerClientCrudDao.ajout(client);
+		return true;
 	}
 
+
+	public Client lireClientById(int id) {
+		return conseillerClientCrudDao.getClientById(id);
+	}
+	
+	
 	public boolean purge() {
 		// TODO Auto-generated method stub
 		return false;
