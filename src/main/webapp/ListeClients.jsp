@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="fr.gtm.proxibanque.domain.Client"%>
-<%@ page import="fr.gtm.proxibanque.domain.Comptes"%> 
+<%@ page import="fr.gtm.proxibanque.domain.Compte"%> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <!DOCTYPE>
 <html>
@@ -40,6 +40,10 @@
 	        <th>Prénom</th>
 	        <th>Email</th>
 	        <th>Adresse</th>
+	        <th>Compte Courant</th>
+	        <th>Compte Epargne</th>
+	        <th>Modifier</th>
+	        <th>Supprimer</th>
 	      </tr>
 	    </thead>
 	    <tbody>
@@ -49,7 +53,9 @@
 					    <td><c:out value="${Client.prenom}"/></td>
 					    <td><c:out value="${Client.email}"/></td>
 					    <td><c:out value="${Client.adresse}"/></td>
-					    <td><c:out items="${Client.compteCourant}" var="cCourant"><c:out value="${cCourant.}"/>/</c:forEach></td>
+					    <td><c:out value="${Client.compteCourant.id} : ${Client.compteCourant.solde}"/></td>
+					    <td><c:out value="${Client.compteEpargne.id} : ${Client.compteEpargne.solde}"/></td>
+					    <td><a href=""><button</a>
 					    </tr>
 		</c:forEach>
 	    </tbody>
