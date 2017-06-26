@@ -118,10 +118,10 @@ public class GerantCrudDao extends AccesDao {
 
 	public ArrayList<Conseiller> lireListe() {
 		ArrayList<Conseiller> conseillers = new ArrayList<Conseiller>();
-		String nom = "inconnu";
-		String prenom = "inconnu";
-		String login = "inconnu";
-		String paswd = "inconnu";
+		String nom ;
+		String prenom;
+		String login;
+		String paswd;
 		int id = 0;
 		Conseiller conseiller = null;
 		try {
@@ -136,9 +136,13 @@ public class GerantCrudDao extends AccesDao {
 			rs = st.executeQuery(sql);
 			// etape 5 (parcours resultSet)
 			while (rs.next()) {
+				id=rs.getInt(1);
 				nom = rs.getString(2);
 				prenom = rs.getString(3);
-				conseiller = new Conseiller(nom,prenom,paswd,login);
+				login=rs.getString(4);
+				paswd=rs.getString(5);
+				
+				conseiller = new Conseiller(id,nom,prenom,paswd,login);
 				conseillers.add(conseiller);
 			}
 		} catch (SQLException e) {
@@ -219,7 +223,46 @@ public class GerantCrudDao extends AccesDao {
 	
 
 
+	public boolean modifierConseiller(int id, Conseiller conseiller) {
+		String nom = conseiller.getNom();
+		String prenom = conseiller.getPrenom();
+		String login = conseiller.getLogin();
+		String paswd = conseiller.getPswd();
 
+		String insertString = "UPDATE `conseillers` SET nom=?,prenom =?,login=?,password=? WHERE id=" + id;
+		try {
+			// Etape 1 : chargement du driver
+			Class.forName("com.mysql.jdbc.Driver");
+			// etape 2 : recuperation de la connection
+			cn = DriverManager.getConnection(url, log, passwd);
+			// etape 3 : creation d'un statement
+			pst = cn.prepareStatement(insertString);
+			pst.setString(1, nom);
+			pst.setString(2, prenom);
+			pst.setString(3, login);
+			pst.setString(4, paswd);
+
+			// etape 4 = execution requete
+
+			pst.executeUpdate();
+			// etape 5 (parcours resultSet)
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				// etape 6 liberer ressources de la memoire
+				cn.close();
+				pst.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+		}
+		return true;
+	}
 	
 	
 }

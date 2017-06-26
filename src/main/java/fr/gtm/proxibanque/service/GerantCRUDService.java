@@ -15,7 +15,10 @@ public class GerantCRUDService implements CRUDInterface {
 		return true;
 	}
 
-
+	public boolean modifier (int id, Conseiller conseiller){
+		return gerantCrudDao.modifierConseiller(id, conseiller);
+	}
+	
 	public Conseiller lireConseillerById(int id) {
 		return gerantCrudDao.lireConseillerById(id);
 	}

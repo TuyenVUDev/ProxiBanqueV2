@@ -49,21 +49,33 @@ public class test2 {
 		conseillerClientCrudService.ajout(client2);
 
 		// conseillerClientCrudService.supprimer(1);
-		// conseillerCompteCRUDService.supprimer(1);
+		// conseillerCompteCrudService.supprimer(1);
 		// conseillerClientCrudService.ajout(client);
 		// System.out.println(conseillerClientCrudService.lireClientById(1));
 		// gerantCRUDService.supprimer(1);
-		// System.out.println(conseillerCompteCRUDService.lireCompteById(1));
-		conseillerService.associationCompte(1, 1);
 		System.out.println(conseillerClientCrudService.lire());
+		
+		//association compte/client
+		conseillerService.associationCompte(1, 1);
+		System.out.println(conseillerCompteCrudService.lireCompteById(1));
+		//
+		
+		
+		System.out.println(conseillerClientCrudService.lire());
+		
 		System.out.println(conseillerCompteCrudService.lire());
 		System.out.println(gerantCRUDService.lire());
-		// System.out.println(conseillerClientCrudService.lire());
 
-		// ClientCrudService clientCrudService = new ClientCrudService();
-		// clientCrudService.ajout(client);
-		// client.setIdConseiller(conseiller.getId());
+		//modification d'info client
+		Client clientModifie = new Client("nomMod", "prenomMod", "adresseMod", "emailMod", 3);
+		conseillerClientCrudService.modifier(1, clientModifie);
+		System.out.println(conseillerClientCrudService.lire());
 
+		//modif d'info conseiller
+		Conseiller conseillerModif = new Conseiller("nomModif","prenomModif","loginModif","paswdModif");
+		gerantCRUDService.modifier(1, conseillerModif);
+		System.out.println(gerantCRUDService.lire());
+		
 	}
 
 }
