@@ -4,7 +4,7 @@ import fr.gtm.proxibanque.dao.GerantCrudDao;
 import fr.gtm.proxibanque.domain.Client;
 import fr.gtm.proxibanque.domain.Conseiller;
 
-public class GerantCRUDService implements CrudInterface {
+public class GerantCRUDService implements CRUDInterface {
 
 	GerantCrudDao gerantCrudDao = new GerantCrudDao();
 	
@@ -20,8 +20,7 @@ public class GerantCRUDService implements CrudInterface {
 	
 	
 	public boolean purge() {
-		// TODO Auto-generated method stub
-		return false;
+		return gerantCrudDao.purgeTable();
 	}
 
 	public boolean supprimer(int id) {

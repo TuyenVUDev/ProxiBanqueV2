@@ -7,12 +7,12 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import fr.gtm.proxibanque.dao.ConseillerClientCrudDao;
+import fr.gtm.proxibanque.dao.ConseillerClientCRUDDao;
 
-public class ConseillerClientCrudService implements CrudInterface {
+public class ConseillerClientCRUDService implements CRUDInterface {
 
 
-ConseillerClientCrudDao conseillerClientCrudDao = new ConseillerClientCrudDao();
+ConseillerClientCRUDDao conseillerClientCrudDao = new ConseillerClientCRUDDao();
 	
 	
 	public boolean ajout(Client client) {
@@ -30,8 +30,7 @@ ConseillerClientCrudDao conseillerClientCrudDao = new ConseillerClientCrudDao();
 	
 	
 	public boolean purge() {
-		// TODO Auto-generated method stub
-		return false;
+		return conseillerClientCrudDao.purgeTable();
 	}
 
 	public boolean supprimer(int id) {

@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.annotation.WebServlet;
 import fr.gtm.proxibanque.domain.Client;
-import fr.gtm.proxibanque.service.ConseillerClientCrudService;
+import fr.gtm.proxibanque.service.ConseillerClientCRUDService;
 
 import java.io.IOException;
 
@@ -54,7 +54,7 @@ public class AjoutClientServlet extends HttpServlet {
 		System.out.println(nom+prenom+adresse+email);
 		
 		RequestDispatcher dispatcher;
-		ConseillerClientCrudService clientCrudService = new ConseillerClientCrudService();
+		ConseillerClientCRUDService clientCrudService = new ConseillerClientCRUDService();
 		Client client = new Client(nom, prenom, adresse, email, 1);
 		boolean rep=clientCrudService.ajout(client);
 
