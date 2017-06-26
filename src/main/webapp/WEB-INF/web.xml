@@ -5,17 +5,13 @@
 <web-app>
 	<display-name>ProxibanqueSI</display-name>
 	<servlet>
-		<servlet-name>ListClientServlet</servlet-name>
-		<display-name>ListClientServlet</display-name>
+		<servlet-name>ListeClientsServlet</servlet-name>
+		<display-name>ListeClientsServlet</display-name>
 		<description></description>
-		<servlet-class>fr.gtm.proxibanque.presentation.ListClientServlet</servlet-class>
+		<servlet-class>fr.gtm.proxibanque.presentation.ListeClientsServlet</servlet-class>
 	</servlet>
-	<servlet-mapping>
-		<servlet-name>ListClientServlet</servlet-name>
-		<url-pattern>/ListClientServlet</url-pattern>
-	</servlet-mapping>
 	<welcome-file-list>
-		<welcome-file>CreationClient.html</welcome-file>
+		<welcome-file>ListeClients.jsp</welcome-file>
 	</welcome-file-list>
 
 

@@ -21,10 +21,11 @@
 			<img src="CSS/images/Proxibanque.jpg" alt="proxilogo" id=logo>
 		</div>
 	</div>
-	<nav class="navbar navbar-inverse">
+</div>
+<nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <ul class="nav navbar-nav">
-      <li class="act"><a href="#">Liste des Clients</a></li>
+      <li class="act"><a href="ListeClientsServlet">Liste des Clients</a></li>
       <li><a href="CreationClient.html">Créer un nouveau Client</a></li>
       <li><a href="Virement.jsp">Effectuer un Virement</a></li>
     </ul>
@@ -46,15 +47,15 @@
 	      </tr>
 	    </thead>
 	    <tbody>
-	     <c:forEach items="${ListCLient}" var="Client">
+	     <c:forEach items="${ListeClients}" var="Client">
 						<tr>
 					    <td><c:out value="${Client.nom}"/></td>
 					    <td><c:out value="${Client.prenom}"/></td>
 					    <td><c:out value="${Client.email}"/></td>
 					    <td><c:out value="${Client.adresse}"/></td>
-					    <td><c:out value="${Client.compteCourant.id} : ${Client.compteCourant.solde}"/></td>
-					    <td><c:out value="${Client.compteEpargne.id} : ${Client.compteEpargne.solde}"/></td>
-					    <td id=modifier><a href="ModificationClient.jsp?id=${Client.idClient}">Modifier</a></td>
+					    <td><c:out value="${Client.idCompteCourant} : "/></td>
+					    <td><c:out value="${Client.idCompteEpargne} : "/></td>
+					    <td id=modifier><a href="">Modifier</a></td>
 					    <td id=supprimer><a href="">Supprimer</a></td>
 					    </tr>
 		</c:forEach>

@@ -1,5 +1,4 @@
 package fr.gtm.proxibanque.presentation;
-ackage fr.gtm.proxibanque.presentation;
 
 
 import javax.servlet.RequestDispatcher;
@@ -7,11 +6,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.annotation.WebServlet;
 import fr.gtm.proxibanque.domain.Client;
 import fr.gtm.proxibanque.service.ConseillerClientCRUDService;
 
 import java.io.IOException;
+import java.util.List;
 
 
 /**
@@ -53,14 +54,15 @@ public class ListeClientsServlet extends HttpServlet {
 		RequestDispatcher dispatcher;
 		
 		ConseillerClientCRUDService clientCrudService = new ConseillerClientCRUDService();
-		Client client = new Client(nom, prenom, adresse, email, 1);
-		boolean rep=clientCrudService.ajout(client);
+		List<Client> ListeClients = clientCrudService.lire();
+		
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("ListeClients", ListeClients);
 
-		if (rep==true){
+
+		
 			dispatcher=request.getRequestDispatcher("ListeClients.jsp");
-		}else{
-			dispatcher=request.getRequestDispatcher("ListeClients.jsp");
-		}
 		
 		dispatcher.forward(request,response);
 	}
