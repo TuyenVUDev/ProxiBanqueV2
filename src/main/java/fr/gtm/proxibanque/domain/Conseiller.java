@@ -8,8 +8,6 @@ import javax.persistence.Id;
 
 public class Conseiller extends Personne{
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int idConseiller;
 	private String password,login;
 	private ArrayList<Client> listeClients;

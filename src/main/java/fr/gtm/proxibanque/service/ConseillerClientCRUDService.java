@@ -21,13 +21,13 @@ ConseillerClientCRUDDao conseillerClientCrudDao = new ConseillerClientCRUDDao();
 	}
 
 
-	public Client lireClientById(int id) {
+	public Client lireById(int id) {
 		return conseillerClientCrudDao.lireClientById(id);
 	}
-	public ArrayList<Client> lire() {
-		return conseillerClientCrudDao.lireListe();
+	public ArrayList<Client> lire(int idConseiller) {
+		return conseillerClientCrudDao.lireListe(idConseiller);
 	}
-	public boolean modifier(int id , Client client){
+	public boolean modification(int id , Client client){
 		return conseillerClientCrudDao.modifierClient(id, client);
 	}
 	

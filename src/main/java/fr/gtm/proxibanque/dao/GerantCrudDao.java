@@ -142,7 +142,7 @@ public class GerantCrudDao extends AccesDao {
 				login=rs.getString(4);
 				paswd=rs.getString(5);
 				
-				conseiller = new Conseiller(id,nom,prenom,paswd,login);
+				conseiller = new Conseiller(id,nom,prenom,login,paswd);
 				conseillers.add(conseiller);
 			}
 		} catch (SQLException e) {
@@ -153,7 +153,7 @@ public class GerantCrudDao extends AccesDao {
 			try {
 				// etape 5 liberer ressources de la memoire
 				cn.close();
-				pst.close();
+				st.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

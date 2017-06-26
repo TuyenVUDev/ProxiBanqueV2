@@ -18,6 +18,8 @@ import fr.gtm.proxibanque.domain.Conseiller;
 
 public class ConseillerClientCRUDDao extends AccesDao {
 
+	
+	
 	public boolean ajout(Client client) {
 		String nom = client.getNom();
 		String prenom = client.getPrenom();
@@ -151,7 +153,7 @@ public class ConseillerClientCRUDDao extends AccesDao {
 		return client;
 	}
 
-	public ArrayList<Client> lireListe() {
+	public ArrayList<Client> lireListe(int idConseillerCourant) {
 		ArrayList<Client> clients = new ArrayList<Client>();
 		String nom = "inconnu";
 		String prenom = "inconnu";
@@ -170,7 +172,7 @@ public class ConseillerClientCRUDDao extends AccesDao {
 			cn = DriverManager.getConnection(url, log, passwd);
 			// etape 3 : creation d'un statement
 			st = cn.createStatement();
-			String sql = "SELECT * FROM clients ";
+			String sql = "SELECT * FROM clients WHERE idConseiller="+idConseillerCourant;
 			// etape 4 = execution requete
 			rs = st.executeQuery(sql);
 			// etape 5 (parcours resultSet)
