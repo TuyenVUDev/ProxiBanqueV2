@@ -76,6 +76,12 @@ public class test2 {
 		gerantCRUDService.modifier(1, conseillerModif);
 		System.out.println(gerantCRUDService.lire());
 		
+		//virement compte à compte
+		System.out.println(conseillerCompteCrudService.lire());
+		conseillerService.effectuerVirement(1,2,100.2);
+		System.out.println(conseillerCompteCrudService.lire());
+		
+		
 	}
 
 }

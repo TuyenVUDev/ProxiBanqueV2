@@ -30,7 +30,7 @@ public class GerantCRUDService implements CRUDInterface {
 		return gerantCrudDao.purgeTable();
 	}
 
-	public boolean supprimer(int id) {
+	public boolean suppression(int id) {
 		return gerantCrudDao.suppression(id);
 	}
 

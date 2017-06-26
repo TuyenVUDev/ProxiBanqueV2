@@ -9,7 +9,7 @@ public class Compte {
 
 	private int id;
 	private String typeDeCompte;
-	private float solde;
+	private double solde;
 	public int getId() {
 		return id;
 	}
@@ -22,18 +22,18 @@ public class Compte {
 	public void setTypeDeCompte(String typeDeCompte) {
 		this.typeDeCompte = typeDeCompte;
 	}
-	public float getSolde() {
+	public double getSolde() {
 		return solde;
 	}
-	public void setSolde(float solde) {
+	public void setSolde(double solde) {
 		this.solde = solde;
 	}
-	public Compte(String typeDeCompte, float solde) {
+	public Compte(String typeDeCompte, double solde) {
 		super();
 		this.typeDeCompte = typeDeCompte;
 		this.solde = solde;
 	}
-	public Compte(int id, String typeDeCompte, float solde) {
+	public Compte(int id, String typeDeCompte, double solde) {
 		super();
 		this.id=id;
 		this.typeDeCompte = typeDeCompte;

@@ -35,7 +35,7 @@ ConseillerClientCRUDDao conseillerClientCrudDao = new ConseillerClientCRUDDao();
 		return conseillerClientCrudDao.purgeTable();
 	}
 
-	public boolean supprimer(int id) {
+	public boolean suppression(int id) {
 		return conseillerClientCrudDao.supprimerById(id);
 	}
 
