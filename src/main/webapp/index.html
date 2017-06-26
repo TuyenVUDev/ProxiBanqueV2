@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="iso-8859-1"/>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="CSS/Style.css">
+<title>index</title>
+</head>
+<body>
+<div class="container-fluid" id=menu1>
+	<div class="row" id=bando>
+		<div class="col-lg-12" id=bandoint1>
+			<img src="images/Proxibanque.jpg" alt="proxilogo" id=logo>
+		</div>
+	</div>
+	<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="#">Page 1</a></li>
+      <li><a href="#">Page 2</a></li>
+      <li><a href="#">Page 3</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+
+
+<form class="form-horizontal" id=form1 action = "AjoutClientServlet" method = POST>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="nom" value="">nom</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="email" placeholder="nom" name="nom" value="vu">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="prenom">prenom</label>
+    <div class="col-sm-10"> 
+      <input type="text" class="form-control" id="prenom" placeholder="prenom" name="prenom" value="tuyen">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="adresse">adresse</label>
+    <div class="col-sm-10"> 
+      <input type="text" class="form-control" id="adresse" placeholder="adresse" name = "adresse" value="21 quai Victor Augagneur">
+    </div>
+  </div>
+    <div class="form-group">
+    <label class="control-label col-sm-2" for="email">email</label>
+    <div class="col-sm-10"> 
+      <input type="email" class="form-control" id="email" placeholder="email" name ="email" value="tuyentown@gmail.com">
+    </div>
+  </div>
+  <div class="form-group"> 
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class="checkbox">
+        <label><input type="checkbox"> Remember me</label>
+      </div>
+    </div>
+  </div>
+  <div class="form-group"> 
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default">Submit</button>
+    </div>
+  </div>
+</form>
+</div>
+
+
+</body>
+</html>
