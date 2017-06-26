@@ -21,7 +21,10 @@ ConseillerCompteCRUDDao conseillerCompteCRUDDao =new ConseillerCompteCRUDDao();
 		return true;
 	}
 
-
+	public ArrayList<Compte> lire(){
+		return conseillerCompteCRUDDao.lireListe();
+		
+	};
 	public Compte lireCompteById(int id) {
 		return conseillerCompteCRUDDao.lireById(id);
 	}
