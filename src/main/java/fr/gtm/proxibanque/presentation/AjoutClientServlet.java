@@ -17,7 +17,8 @@ import java.io.IOException;
  * Servlet implementation class MaServlet
  */
 
-@WebServlet(name="AjoutClientServlet", urlPatterns = "/AjoutClientServlet")
+
+@WebServlet(name="AjoutClientServlet", urlPatterns = "/AjoutClientServlet" )
 public class AjoutClientServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
