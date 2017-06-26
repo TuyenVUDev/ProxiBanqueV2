@@ -47,7 +47,8 @@ public class test2 {
 		//	System.out.println(conseillerClientCrudService.lireClientById(1));
 //		gerantCRUDService.supprimer(1);
 
-		System.out.println(conseillerClientCrudService.lire());
+		System.out.println(conseillerClientCrudService.lire());		
+//		System.out.println(conseillerCompteCRUDService.lireCompteById(2));
 				
 				
 						

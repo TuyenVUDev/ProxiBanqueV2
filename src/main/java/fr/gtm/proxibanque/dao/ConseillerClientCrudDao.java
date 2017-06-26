@@ -204,11 +204,8 @@ public class ConseillerClientCrudDao extends AccesDao{
 		return clients;
 	}
 	
-	public boolean modifierClient(int id, Client clientNew){
-		//TODO
-		return true;
-		
-	}
+	
+	
 	
 	
 }
