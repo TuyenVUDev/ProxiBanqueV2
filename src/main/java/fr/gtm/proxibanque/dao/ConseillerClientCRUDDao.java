@@ -131,7 +131,7 @@ public class ConseillerClientCRUDDao extends AccesDao {
 			idCC = rs.getInt(6);
 			idCE = rs.getInt(7);
 			idConseiller = rs.getInt(8);
-			client = new Client(id,nom, prenom, adresse, email, idCC, idCE, idConseiller);
+			client = new Client(id, nom, prenom, adresse, email, idCC, idCE, idConseiller);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -158,10 +158,9 @@ public class ConseillerClientCRUDDao extends AccesDao {
 		String adresse = "inconnu";
 		String email = "inconnu";
 		int id = 0;
-		int idConseiller = 0;
-		int idCompteCourant = 0;
-		int idCompteEpargne = 0;
-		ConseillerCompteCRUDDao conseillerCompteCRUDDao = new ConseillerCompteCRUDDao();
+		int idConseiller;
+		int idCompteCourant;
+		int idCompteEpargne;
 
 		Client client = null;
 		try {
@@ -176,7 +175,7 @@ public class ConseillerClientCRUDDao extends AccesDao {
 			rs = st.executeQuery(sql);
 			// etape 5 (parcours resultSet)
 			while (rs.next()) {
-				id=rs.getInt(1);
+				id = rs.getInt(1);
 				nom = rs.getString(2);
 				prenom = rs.getString(3);
 				id = rs.getInt(1);
@@ -185,7 +184,7 @@ public class ConseillerClientCRUDDao extends AccesDao {
 				idCompteCourant = rs.getInt(6);
 				idCompteEpargne = rs.getInt(7);
 				idConseiller = rs.getInt(8);
-				client = new Client(id,nom, prenom, adresse, email, idCompteEpargne,idCompteEpargne, idConseiller);
+				client = new Client(id, nom, prenom, adresse, email, idCompteCourant, idCompteEpargne, idConseiller);
 				clients.add(client);
 			}
 		} catch (SQLException e) {
@@ -234,39 +233,33 @@ public class ConseillerClientCRUDDao extends AccesDao {
 		return true;
 	}
 
-	public Client modifierClient(int id , Client client) {
+	public boolean modifierClient(int id, Client client) {
 		String nom = client.getNom();
 		String prenom = client.getPrenom();
 		String adresse = client.getAdresse();
 		String email = client.getEmail();
 		int idConseiller = client.getIdConseiller();
-		int idCompteCourant=client.getIdCompteCourant();
-		int idCompteEpargne=client.getIdCompteEpargne();
-		
-		ConseillerCompteCRUDDao conseillerCompteCRUDDao = new ConseillerCompteCRUDDao();
-		String insertString = "UPDATE `clients` ( `nom`, `prenom`, `adresse`, `email`, `idConseiller`) VALUES(?,?,?,?,?) WHERE id="+id;
+		int idCompteCourant = client.getIdCompteCourant();
+		int idCompteEpargne = client.getIdCompteEpargne();
 
+		String insertString = "UPDATE `clients` SET nom=?,prenom =?,adresse=?,email=?,idConseiller=? WHERE id=" + id;
 		try {
 			// Etape 1 : chargement du driver
 			Class.forName("com.mysql.jdbc.Driver");
 			// etape 2 : recuperation de la connection
 			cn = DriverManager.getConnection(url, log, passwd);
 			// etape 3 : creation d'un statement
-			st = cn.createStatement();
-			String sql = "SELECT * FROM clients WHERE id=" + id;
-			// etape 4 = execution requete
-			rs = st.executeQuery(sql);
-			rs.next();
-			// etape 5 (parcours resultSet)
-			nom = rs.getString(2);
-			prenom = rs.getString(3);
-			adresse = rs.getString(4);
-			email = rs.getString(5);
-			idCompteCourant = rs.getInt(6);
-			idCompteEpargne = rs.getInt(7);
-			idConseiller = rs.getInt(8);
-			client = new Client(id,nom, prenom, adresse, email, idCompteCourant, idCompteEpargne, idConseiller);
+			pst = cn.prepareStatement(insertString);
+			pst.setString(1, nom);
+			pst.setString(2, prenom);
+			pst.setString(3, adresse);
+			pst.setString(4, email);
+			pst.setInt(5, idConseiller);
 
+			// etape 4 = execution requete
+
+			pst.executeUpdate();
+			// etape 5 (parcours resultSet)
 		} catch (SQLException e) {
 			e.printStackTrace();
 
@@ -274,16 +267,14 @@ public class ConseillerClientCRUDDao extends AccesDao {
 			e.printStackTrace();
 		} finally {
 			try {
-				// etape 5 liberer ressources de la memoire
+				// etape 6 liberer ressources de la memoire
 				cn.close();
-				st.close();
+				pst.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+
 		}
-
-		return client;
+		return true;
 	}
-
-
 }

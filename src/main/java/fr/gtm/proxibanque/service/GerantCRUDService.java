@@ -15,7 +15,10 @@ public class GerantCRUDService implements CRUDInterface {
 		return true;
 	}
 
-
+	public boolean modifier (int id, Conseiller conseiller){
+		return gerantCrudDao.modifierConseiller(id, conseiller);
+	}
+	
 	public Conseiller lireConseillerById(int id) {
 		return gerantCrudDao.lireConseillerById(id);
 	}
@@ -27,7 +30,7 @@ public class GerantCRUDService implements CRUDInterface {
 		return gerantCrudDao.purgeTable();
 	}
 
-	public boolean supprimer(int id) {
+	public boolean suppression(int id) {
 		return gerantCrudDao.suppression(id);
 	}
 

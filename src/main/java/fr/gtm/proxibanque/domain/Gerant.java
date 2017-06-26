@@ -25,13 +25,13 @@ public class Gerant extends Conseiller{
 	
 	
 	
-	public Gerant(String nom, String prenom, String pswd, String login) {
-		super(nom, prenom, pswd, login);
-		this.setPswd(pswd);
-		this.setLogin(login);
-		this.setNom(nom);
-		this.setPrenom(prenom);
+	public Gerant(int id,String nom, String prenom, String pswd, String login) {
+		super(id, nom, prenom, pswd, login);
 		
+	}
+	
+	public Gerant(String nom, String prenom, String login, String pswd) {
+		super(nom, prenom, login, pswd);
 	}
 	@Override
 	public String toString() {

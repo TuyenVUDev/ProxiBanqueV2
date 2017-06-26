@@ -6,13 +6,14 @@ import java.util.ArrayList;
 
 import fr.gtm.proxibanque.domain.Client;
 import fr.gtm.proxibanque.domain.Compte;
+import fr.gtm.proxibanque.domain.Conseiller;
 
 public class ConseillerCompteCRUDDao extends AccesDao{
 
 	public boolean ajout(Compte compte) {
 
 		String typeDeCompte=compte.getTypeDeCompte();
-		float solde=compte.getSolde();
+		double solde=compte.getSolde();
 		
 		
 		String insertString = "INSERT INTO `comptes` ( `typeDeCompte`, `solde`) VALUES(?,?)";
@@ -25,7 +26,7 @@ public class ConseillerCompteCRUDDao extends AccesDao{
 			// etape 3 : creation d'un statement
 			pst=cn.prepareStatement(insertString);
 			pst.setString(1,typeDeCompte);
-			pst.setFloat(2,solde);
+			pst.setDouble(2,solde);
 			
 			// etape 4 = execution requete
 			
@@ -53,7 +54,7 @@ public class ConseillerCompteCRUDDao extends AccesDao{
 	
 	public Compte lireById(int id){
 		String typeDeCompte = "inconnu";
-		float solde = 0;
+		double solde = 0;
 
 		Compte compte = null;
 
@@ -70,7 +71,7 @@ public class ConseillerCompteCRUDDao extends AccesDao{
 			rs.next();
 			// etape 5 (parcours resultSet)
 			typeDeCompte = rs.getString(2);
-			solde = rs.getFloat(3);
+			solde = rs.getDouble(3);
 			compte = new Compte(typeDeCompte, solde);
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -93,7 +94,7 @@ public class ConseillerCompteCRUDDao extends AccesDao{
 		
 		ArrayList<Compte> comptes = new ArrayList<Compte>();
 		int id = 0;
-		float solde = 0;
+		double solde = 0;
 		String typeDeCompte = "inconnu";
 		ConseillerCompteCRUDDao conseillerCompteCRUDDao = new ConseillerCompteCRUDDao();
 		Compte compte = null;
@@ -111,7 +112,7 @@ public class ConseillerCompteCRUDDao extends AccesDao{
 			while (rs.next()) {
 				id = rs.getInt(1);
 				typeDeCompte = rs.getString(2);
-				solde = rs.getFloat(3);
+				solde = rs.getDouble(3);
 				compte = new Compte(id, typeDeCompte, solde);
 				comptes.add(compte);
 			}
@@ -190,4 +191,40 @@ public class ConseillerCompteCRUDDao extends AccesDao{
 		}
 		return true;
 	}
+	
+	public boolean modifierSoldeCompte(int id, double nouveauSolde) {
+		
+
+		String insertString = "UPDATE `comptes` SET solde=? WHERE id=" + id;
+		try {
+			// Etape 1 : chargement du driver
+			Class.forName("com.mysql.jdbc.Driver");
+			// etape 2 : recuperation de la connection
+			cn = DriverManager.getConnection(url, log, passwd);
+			// etape 3 : creation d'un statement
+			pst = cn.prepareStatement(insertString);
+			pst.setDouble(1, nouveauSolde);
+
+			// etape 4 = execution requete
+
+			pst.executeUpdate();
+			// etape 5 (parcours resultSet)
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				// etape 6 liberer ressources de la memoire
+				cn.close();
+				pst.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+		}
+		return true;
+	}
+	
 }

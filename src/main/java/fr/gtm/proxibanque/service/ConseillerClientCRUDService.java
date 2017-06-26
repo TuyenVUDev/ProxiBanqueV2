@@ -27,15 +27,16 @@ ConseillerClientCRUDDao conseillerClientCrudDao = new ConseillerClientCRUDDao();
 	public ArrayList<Client> lire() {
 		return conseillerClientCrudDao.lireListe();
 	}
-//	public Client modifier(int id , Client client){
-//		return conseillerClientCrudDao.modifierClient();
-//	}
-//	
+
+	public boolean modifier(int id , Client client){
+		return conseillerClientCrudDao.modifierClient(id, client);
+	}
+	
 	public boolean purge() {
 		return conseillerClientCrudDao.purgeTable();
 	}
 
-	public boolean supprimer(int id) {
+	public boolean suppression(int id) {
 		return conseillerClientCrudDao.supprimerById(id);
 	}
 
