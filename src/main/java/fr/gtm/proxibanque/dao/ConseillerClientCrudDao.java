@@ -65,8 +65,34 @@ public class ConseillerClientCrudDao extends AccesDao{
 	}
 	
 	public boolean supprimerById(int id) {
-		//TODO
-		return false;
+
+		try {
+			// Etape 1 : chargement du driver
+			Class.forName("com.mysql.jdbc.Driver");
+			// etape 2 : recuperation de la connection
+			cn = DriverManager.getConnection(url, log, passwd);
+			// etape 3 : creation d'un statement
+			st = cn.createStatement();
+			String sql = "DELETE FROM `clients` WHERE id = " + id ;
+			// etape 4 = execution requete
+			st.executeUpdate(sql);
+			// etape 5 (parcours resultSet)
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				// etape 5 liberer ressources de la memoire
+				cn.close();
+				st.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return true;
 	}
 	
 	public Client getClientById(int id){
@@ -133,6 +159,11 @@ public class ConseillerClientCrudDao extends AccesDao{
 		String adresse = "inconnu";
 		String email = "inconnu";
 		int id = 0;
+		int idConseiller=0;
+		int idCompteCourant=0;
+		int idCompteEpargne=0;
+		ConseillerCompteCRUDDao conseillerCompteCRUDDao = new ConseillerCompteCRUDDao();
+		
 		Client client= null;
 		try {
 			// Etape 1 : chargement du driver
@@ -141,7 +172,7 @@ public class ConseillerClientCrudDao extends AccesDao{
 			cn = DriverManager.getConnection(url, log, passwd);
 			// etape 3 : creation d'un statement
 			st = cn.createStatement();
-			String sql = "SELECT * FROM materiel ";
+			String sql = "SELECT * FROM clients ";
 			// etape 4 = execution requete
 			rs = st.executeQuery(sql);
 			// etape 5 (parcours resultSet)
@@ -149,7 +180,12 @@ public class ConseillerClientCrudDao extends AccesDao{
 				nom = rs.getString(2);
 				prenom = rs.getString(3);
 				id = rs.getInt(1);
-				client = new Client();
+				adresse = rs.getString(4);
+				email=rs.getString(5);
+				idCompteCourant=rs.getInt(6);
+				idCompteEpargne=rs.getInt(7);
+				idConseiller=rs.getInt(8);
+				client = new Client(nom, prenom, adresse, email, conseillerCompteCRUDDao.lireById(idCompteEpargne), conseillerCompteCRUDDao.lireById(idCompteEpargne), idConseiller);
 				clients.add(client);
 			}
 		} catch (SQLException e) {
@@ -160,7 +196,7 @@ public class ConseillerClientCrudDao extends AccesDao{
 			try {
 				// etape 5 liberer ressources de la memoire
 				cn.close();
-				pst.close();
+				st.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

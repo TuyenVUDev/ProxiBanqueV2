@@ -24,6 +24,9 @@ ConseillerClientCrudDao conseillerClientCrudDao = new ConseillerClientCrudDao();
 	public Client lireClientById(int id) {
 		return conseillerClientCrudDao.getClientById(id);
 	}
+	public ArrayList<Client> lire() {
+		return conseillerClientCrudDao.lireListe();
+	}
 	
 	
 	public boolean purge() {
@@ -32,8 +35,7 @@ ConseillerClientCrudDao conseillerClientCrudDao = new ConseillerClientCrudDao();
 	}
 
 	public boolean supprimer(int id) {
-		// TODO Auto-generated method stub
-		return false;
+		return conseillerClientCrudDao.supprimerById(id);
 	}
 
 }

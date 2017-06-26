@@ -33,20 +33,21 @@ public class test2 {
 	
 
 		//ajout d'un conseiller
-		gerantCRUDService.ajout(conseiller);
+//		gerantCRUDService.ajout(conseiller);
 		
 		//ajout d'un compte courant
-		conseillerCompteCRUDService.ajout(compteCourant);
+//		conseillerCompteCRUDService.ajout(compteCourant);
 		//ajout d'un client
-		conseillerClientCrudService.ajout(client);
+//		conseillerClientCrudService.ajout(client);
+//		conseillerClientCrudService.ajout(client);
 
-		System.out.println(client);
-		
-		
+//		conseillerClientCrudService.supprimer(1);
+//		conseillerCompteCRUDService.supprimer(1);
 //		conseillerClientCrudService.ajout(client);
 		//	System.out.println(conseillerClientCrudService.lireClientById(1));
-		
+//		gerantCRUDService.supprimer(1);
 
+		System.out.println(conseillerClientCrudService.lire());
 				
 				
 						

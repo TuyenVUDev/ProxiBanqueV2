@@ -33,8 +33,7 @@ ConseillerCompteCRUDDao conseillerCompteCRUDDao =new ConseillerCompteCRUDDao();
 	}
 
 	public boolean supprimer(int id) {
-		// TODO Auto-generated method stub
-		return false;
+		return conseillerCompteCRUDDao.suppression(id);
 	}
 
 }

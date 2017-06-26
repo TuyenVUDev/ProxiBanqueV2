@@ -79,12 +79,41 @@ public class ConseillerCompteCRUDDao extends AccesDao{
 			try {
 				// etape 5 liberer ressources de la memoire
 				cn.close();
-				pst.close();
+				st.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
 		return compte;
-		
+	}
+	
+	public boolean suppression(int id) {
+		try {
+			// Etape 1 : chargement du driver
+			Class.forName("com.mysql.jdbc.Driver");
+			// etape 2 : recuperation de la connection
+			cn = DriverManager.getConnection(url, log, passwd);
+			// etape 3 : creation d'un statement
+			st = cn.createStatement();
+			String sql = "DELETE FROM `comptes` WHERE id = " + id ;
+			// etape 4 = execution requete
+			st.executeUpdate(sql);
+			// etape 5 (parcours resultSet)
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				// etape 5 liberer ressources de la memoire
+				cn.close();
+				st.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return true;
 	}
 }
