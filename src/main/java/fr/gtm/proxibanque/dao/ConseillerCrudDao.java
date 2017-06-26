@@ -14,20 +14,18 @@ import javax.persistence.Persistence;
 
 import fr.gtm.proxibanque.domain.Client;
 import fr.gtm.proxibanque.domain.Compte;
+import fr.gtm.proxibanque.domain.Conseiller;
 
-public class ClientCrudDao extends AccesDao{
+public class ConseillerCrudDao extends AccesDao{
 
 
-	public boolean ajouterEnBase(Client client) {
-		String nom = client.getNom();
-		String prenom = client.getPrenom();
-		String adresse = client.getAdresse();
-		String email = client.getEmail();
-		int id= client.getId();
-		int idCompteCourant = client.getCompteCourant().getId();
-		int idCompteEpargne = client.getCompteEpargne().getId();
+	public boolean ajouterEnBase(Conseiller conseiller) {
+		String nom = conseiller.getNom();
+		String prenom = conseiller.getPrenom();
+		String password = conseiller.getPswd();
+		String login = conseiller.getLogin();
 		
-		String insertString = "INSERT INTO `clients` ( `nom`, `prenom`, `adresse`, `email`, `idCompteCourant`,`idCompteEpargne`) VALUES(?,?,?,?,?,?)";
+		String insertString = "INSERT INTO `conseillers` ( `nom`, `prenom`, `login`, `password`) VALUES(?,?,?,?)";
 		
 		try {
 			// Etape 1 : chargement du driver
@@ -38,10 +36,8 @@ public class ClientCrudDao extends AccesDao{
 			pst=cn.prepareStatement(insertString);
 			pst.setString(2,nom);
 			pst.setString(3,prenom);
-			pst.setString(4,adresse);
-			pst.setString(5,email);
-			pst.setInt(5, idCompteCourant);
-			pst.setInt(6, idCompteEpargne);
+			pst.setString(4,login);
+			pst.setString(5,password);
 			
 			// etape 4 = execution requete
 			

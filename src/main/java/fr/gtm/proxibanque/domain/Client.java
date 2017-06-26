@@ -7,25 +7,25 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Client  {
+public class Client extends Personne{
 	// proprietes
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
-	private String nom;
-	private String prenom;
-	private String adresse;
-	private String email;
+	private String adresse, email;
+	private Compte compteEpargne;
+	private Compte compteCourant;
+	private int idConseiller;
 
 	// constructeur
 
 
 	public Client(String nom, String prenom, String adresse,
 			String email) {
-		this.nom = nom;
-		this.prenom = prenom;
 		this.adresse = adresse;
 		this.email = email;
+		this.setNom(nom);
+		this.setPrenom(prenom);
 	}
 	
 
@@ -36,21 +36,6 @@ public class Client  {
 
 	// getters setters
 
-	public String getNom() {
-		return nom;
-	}
-
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-
-	public String getPrenom() {
-		return prenom;
-	}
-
-	public void setPrenom(String prenom) {
-		this.prenom = prenom;
-	}
 
 	public int getId() {
 		return id;
@@ -76,10 +61,42 @@ public class Client  {
 		this.email = email;
 	}
 
+	
+
+	public Compte getCompteEpargne() {
+		return compteEpargne;
+	}
+
+
+	public void setCompteEpargne(Compte compteEpargne) {
+		this.compteEpargne = compteEpargne;
+	}
+
+
+	public Compte getCompteCourant() {
+		return compteCourant;
+	}
+
+
+	public void setCompteCourant(Compte compteCourant) {
+		this.compteCourant = compteCourant;
+	}
+
+	
+
+	public int getIdConseiller() {
+		return idConseiller;
+	}
+
+
+	public void setIdConseiller(int idConseiller) {
+		this.idConseiller = idConseiller;
+	}
+
 
 	@Override
 	public String toString() {
-		return "Client [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + ", email=" + email
+		return "Client [id=" + id + ", nom=" + getNom() + ", prenom=" + getPrenom() + ", adresse=" + adresse + ", email=" + email
 				+ "]";
 	}
 

@@ -1,12 +1,14 @@
 package fr.gtm.proxibanque.service;
 import fr.gtm.proxibanque.domain.Client;
-import java.util.ArrayList;
 
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 
 import fr.gtm.proxibanque.dao.ClientCrudDao;
 
-public class ClientCrudService implements CrudInterface {
+public class ClientCrudService implements CrudInterface{
 
 	ClientCrudDao clientCrudDao = new ClientCrudDao();
 
@@ -14,6 +16,8 @@ public class ClientCrudService implements CrudInterface {
 		return clientCrudDao.ajouterEnBase(client);
 	}
 
+	
+	
 	public boolean modifierClient(int id, Client client) {
 		return clientCrudDao.modifierClient(id, client);
 	}
@@ -29,6 +33,7 @@ public class ClientCrudService implements CrudInterface {
 	}
 
 	
-	
 
-}
+	}
+
+
