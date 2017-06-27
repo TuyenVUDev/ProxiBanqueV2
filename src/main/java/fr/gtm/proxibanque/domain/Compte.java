@@ -4,6 +4,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+/**
+ * Classe compte avec trois attributs id, typeDeComte,Solde
+ * @author Stagiaire
+ *
+ */
 public class Compte {
 
 

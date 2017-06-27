@@ -40,8 +40,8 @@
 	        <th>Prénom</th>
 	        <th>Email</th>
 	        <th>Adresse</th>
-	        <th>Solde Courant</th>
-	        <th>Solde Epargne</th>
+	        <th>id compte ourant</th>
+	        <th>id compte epargne</th>
 	        <th></th>
 	        <th></th>
 	        <th></th>

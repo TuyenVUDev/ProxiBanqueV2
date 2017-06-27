@@ -1,5 +1,11 @@
 package fr.gtm.proxibanque.domain;
 
+
+/**
+ * classe abstraite generalisant les proprietes nom et prenom
+ * @author Stagiaire
+ *
+ */
 public abstract class Personne {
 
 	private String nom;

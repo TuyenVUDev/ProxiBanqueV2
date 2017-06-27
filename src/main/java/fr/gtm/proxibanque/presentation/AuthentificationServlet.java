@@ -64,7 +64,7 @@ public class AuthentificationServlet extends HttpServlet {
 		
 		
 		if (rep == true) {
-			dispatcher = request.getRequestDispatcher("ListeClients.jsp");
+			dispatcher = request.getRequestDispatcher("ListeClientsServlet");
 			System.out.println("authentification ok");
 			authentification=true;
 			session.setAttribute("authentification", authentification);
