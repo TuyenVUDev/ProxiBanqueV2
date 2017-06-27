@@ -30,8 +30,8 @@ public class test2 {
 		Client client1 = new Client("nom1", "prenom1", "adresse1", "email1", 1);
 		Client client2 = new Client("nom2", "prenom2", "adresse2", "email2", 1);
 		Client client3 = new Client("nom3", "prenom3", "adresse3", "email3", 1);
-		Client client4 = new Client("nom4", "prenom4", "adresse4", "email4", 1);
-		Client client5 = new Client("nom5", "prenom5", "adresse5", "email5", 1);
+		Client client4 = new Client("nom4", "prenom4", "adresse4", "email4", 2);
+		Client client5 = new Client("nom5", "prenom5", "adresse5", "email5", 2);
 		
 		
 
@@ -121,6 +121,5 @@ public class test2 {
 		System.out.println(conseillerCompteCrudService.getIdCompteCourantAvecIdConseiller(1));
 		System.out.println(conseillerCompteCrudService.getIdCompteEpargneAvecIdConseiller(1));
 		System.out.println(conseillerCompteCrudService.getIdToutCompteAvecIdConseiller(1));
-		System.out.println(gerantCRUDService.lire().stream().filter(c -> c.getLogin().equals("login1")).map(c -> c.getId()).findAny().get());
 	}	
 }
