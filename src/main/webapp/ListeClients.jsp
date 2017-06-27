@@ -2,6 +2,7 @@
 <%@ page import="java.util.List"%>
 <%@ page import="fr.gtm.proxibanque.domain.Client"%>
 <%@ page import="fr.gtm.proxibanque.domain.Compte"%>
+<%@ page import="fr.gtm.proxibanque.service.ConseillerService"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
@@ -49,14 +50,15 @@
 	    </thead>
 	    <tbody>
 	    <% List<Client> ListC = (List<Client>) session.getAttribute("ListC"); %>
+	    <% ConseillerService cs = new ConseillerService(); %>
 	    <%for(Client client:ListC){%>
 	    <tr>
 	    <td><% out.println(client.getNom());%></td>
 	    <td><% out.println(client.getPrenom());%></td>
 	    <td><% out.println(client.getEmail());%></td>
 	    <td><% out.println(client.getAdresse());%></td>
-	    <td><% out.println(client.getIdCompteCourant());%></td>
-	    <td><% out.println(client.getIdCompteEpargne());%></td>
+	    <td><% out.println(client.getIdCompteCourant());%>solde :<%out.print(cs.getSoldeCompteByID(client.getIdCompteCourant()));%></td>
+	    <td><% out.println(client.getIdCompteEpargne());%>solde :<%out.print(cs.getSoldeCompteByID(client.getIdCompteCourant()));%></td>
 	    <td id=ajoutcompte><a href="AjoutCompteServlet?id=<%out.print(client.getId());%>">Ajouter un Compte</a></td>
 	    <td id=modifier><a href="ModificationClientServlet?id=<%out.print(client.getId());%>">Modifier</a></td>
 		<td id=supprimer><a href="SupprimerClientServlet?id=<%out.print(client.getId());%>">Supprimer</a></td>

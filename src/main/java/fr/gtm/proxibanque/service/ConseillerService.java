@@ -2,6 +2,7 @@ package fr.gtm.proxibanque.service;
 
 import fr.gtm.proxibanque.dao.ConseillerCompteCRUDDao;
 import fr.gtm.proxibanque.dao.ConseillerDao;
+import fr.gtm.proxibanque.domain.Compte;
 
 public class ConseillerService {
 
@@ -46,4 +47,20 @@ public class ConseillerService {
 		return true;
 	}
 
+	/**
+	 * methode permettant de recuperer le solde d'un compte en fonction de son
+	 * Id
+	 * 
+	 * @param idCompte
+	 *            : id du compte
+	 *
+	 *
+	 * @return double : solde du compte
+	 */
+
+	public double getSoldeCompteByID(int idCompte) {
+		Compte compte = conseillerCompteCRUDDao.lireById(idCompte);
+		double solde = compte.getSolde();
+		return solde;
+	}
 }
