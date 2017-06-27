@@ -31,6 +31,15 @@ public class Client extends Personne{
 		this.idCompteEpargne=idCompteEpargne;
 		this.idConseiller = idConseiller;
 	}
+	public Client(int id,String nom, String prenom, String adresse,
+			String email, int idConseiller) {
+		this.id=id;
+		this.adresse = adresse;
+		this.email = email;
+		this.setNom(nom);
+		this.setPrenom(prenom);
+		this.idConseiller = idConseiller;
+	}
 	
 	public Client(String nom, String prenom, String adresse,
 			String email, int idConseiller) {

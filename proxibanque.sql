@@ -21,8 +21,8 @@ CREATE TABLE `clients` (
   `prenom` varchar(255) DEFAULT NULL,
   `adresse` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
-  `idCompteCourant` int(10) DEFAULT NULL,
-  `idCompteEpargne` int(10) DEFAULT NULL,
+  `idCompteCourant` int(10) DEFAULT 0,
+  `idCompteEpargne` int(10) DEFAULT 0,
   `idConseiller` int(10) DEFAULT NULL
   
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
