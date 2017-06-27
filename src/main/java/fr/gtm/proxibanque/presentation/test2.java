@@ -22,11 +22,18 @@ public class test2 {
 		Conseiller conseiller1 = new Conseiller("nom1", "prenom1", "login1", "pswd1");
 		Conseiller conseiller2 = new Conseiller("nom2", "prenom2", "login2", "pswd2");
 		Gerant gerant = new Gerant("nom", "prenom", "pswd", "login");
-		Compte compteCourant = new Compte("courant", 0);
-		Compte compteEpargne = new Compte("epargne", 0);
+		Compte compteCourant= new Compte("courant", 0);
+		Compte compteEpargne= new Compte("epargne", 0);
+
+		
+		
 		Client client1 = new Client("nom1", "prenom1", "adresse1", "email1", 1);
 		Client client2 = new Client("nom2", "prenom2", "adresse2", "email2", 1);
-		Client client3 = new Client("nom3", "prenom3", "adresse3", "email3", 2);
+		Client client3 = new Client("nom3", "prenom3", "adresse3", "email3", 1);
+		Client client4 = new Client("nom4", "prenom4", "adresse4", "email4", 1);
+		Client client5 = new Client("nom5", "prenom5", "adresse5", "email5", 1);
+		
+		
 
 		// declaration inst. des classes service
 		GerantCRUDService gerantCRUDService = new GerantCRUDService();
@@ -46,11 +53,18 @@ public class test2 {
 
 		// ajout d'un compte courant
 		conseillerCompteCrudService.ajout(compteCourant);
+		conseillerCompteCrudService.ajout(compteCourant);
+		conseillerCompteCrudService.ajout(compteCourant);
 		conseillerCompteCrudService.ajout(compteEpargne);
+		conseillerCompteCrudService.ajout(compteEpargne);
+		conseillerCompteCrudService.ajout(compteEpargne);
+		
 		// ajout d'un client
 		conseillerClientCrudService.ajout(client1);
 		conseillerClientCrudService.ajout(client2);
 		conseillerClientCrudService.ajout(client3);
+		conseillerClientCrudService.ajout(client4);
+		conseillerClientCrudService.ajout(client5);
 
 		// conseillerClientCrudService.supprimer(1);
 		// conseillerCompteCrudService.supprimer(1);
@@ -61,6 +75,13 @@ public class test2 {
 
 		// association compte/client
 		conseillerService.associationCompte(1, 1);
+		conseillerService.associationCompte(2, 2);
+		conseillerService.associationCompte(3, 3);
+		conseillerService.associationCompte(3, 4);
+		conseillerService.associationCompte(4, 5);
+		conseillerService.associationCompte(5, 6);
+//		conseillerService.associationCompte(5, 2);
+		
 		System.out.println(conseillerCompteCrudService.lireById(1));
 		//
 
@@ -72,7 +93,7 @@ public class test2 {
 		// modification d'info client
 		Client clientModifie = new Client("nomMod", "prenomMod", "adresseMod", "emailMod", 2);
 		conseillerClientCrudService.modification(1, clientModifie);
-		System.out.println(conseillerClientCrudService.lire(1));
+//		System.out.println(conseillerClientCrudService.lire(1));
 
 		// modif d'info conseiller
 		Conseiller conseillerModif = new Conseiller("nomModif", "prenomModif", "loginModif", "paswdModif");
@@ -80,22 +101,25 @@ public class test2 {
 		System.out.println(gerantCRUDService.lire());
 
 		// virement compte à compte
-		System.out.println(conseillerCompteCrudService.lire());
+//		System.out.println(conseillerCompteCrudService.lire());
 		conseillerService.effectuerVirement(1, 2, 100.2);
-		System.out.println(conseillerCompteCrudService.lire());
+//		System.out.println(conseillerCompteCrudService.lire());
 
 		// validation de la lecture d'une liste de client d'un conseiller unique
-		System.out.println(conseillerClientCrudService.lire(1));
-		System.out.println(conseillerClientCrudService.lire(2));
+//		System.out.println(conseillerClientCrudService.lire(1));
+//		System.out.println(conseillerClientCrudService.lire(2));
 
 		
 		//authentification
-		System.out.println(authentificationService.testLogin("login2"));
-		System.out.println(authentificationService.testPaswd("pswd2"));
-		System.out.println(authentificationService.authentification("login2", "pswd2"));
-		System.out.println(authentificationService.authentification("login2", "toto"));
-		
+//		System.out.println(authentificationService.testLogin("login2"));
+//		System.out.println(authentificationService.testPaswd("pswd2"));
+//		System.out.println(authentificationService.authentification("login2", "pswd2"));
+//		System.out.println(authentificationService.authentification("login2", "toto"));
+	
 
-	}
-
+		//recuperation des id comptes par conseiller
+		System.out.println(conseillerCompteCrudService.getIdCompteCourantAvecIdConseiller(1));
+		System.out.println(conseillerCompteCrudService.getIdCompteEpargneAvecIdConseiller(1));
+		System.out.println(conseillerCompteCrudService.getIdToutCompteAvecIdConseiller(1));
+	}	
 }
