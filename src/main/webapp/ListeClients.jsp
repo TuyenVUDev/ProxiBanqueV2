@@ -1,5 +1,5 @@
 <!DOCTYPE>
-<%@ page import="java.util.ArrayList"%>
+<%@ page import="java.util.List"%>
 <%@ page import="fr.gtm.proxibanque.domain.Client"%>
 <%@ page import="fr.gtm.proxibanque.domain.Compte"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -47,18 +47,30 @@
 	      </tr>
 	    </thead>
 	    <tbody>
-	     <c:forEach var="Cl" items="${ListC}">
+	    <% List<Client> ListC = (List<Client>) session.getAttribute("ListC"); %>
+	    <%for(Client client:ListC){%>
+	    <tr>
+	    <td><% out.println(client.getNom());%></td>
+	    <td><% out.println(client.getPrenom());%></td>
+	    <td><% out.println(client.getEmail());%></td>
+	    <td><% out.println(client.getAdresse());%>
+	    <td><% out.println(client.getIdCompteCourant());%></td>
+	    <td><% out.println(client.getIdCompteEpargne());%></td>
+	    <td id=modifier><a href="">Modifier</a></td>
+		<td id=supprimer><a href="">Supprimer</a></td>
+		<%} %>
+	    <%-- <c:forEach var="Cl" items="${ListC}">
 						<tr>
-					    <td>${Cl.nom}</td>
-					    <td>${Cl.prenom}</td>
-					    <td>${Cl.email}</td>
-					    <td>${Cl.adresse}</td>
-					    <td>${Cl.idCompteCourant} : </td>
-					    <td>${Cl.idCompteEpargne} : </td>
+					    <td><c:out value="${Cl.nom}"/></td>
+					    <td><c:out value="${Cl.prenom}"/></td>
+					    <td><c:out value="${Cl.email}"/></td>
+					    <td><c:out value="${Cl.adresse}"/></td>
+					    <td><c:out value="${Cl.idCompteCourant} :"/></td>
+					    <td><c:out value="${Cl.idCompteEpargne} :"/></td>
 					    <td id=modifier><a href="">Modifier</a></td>
 					    <td id=supprimer><a href="">Supprimer</a></td>
 					    </tr>
-		</c:forEach>
+		</c:forEach> --%>
 	    </tbody>
 	  </table>
 	</div>

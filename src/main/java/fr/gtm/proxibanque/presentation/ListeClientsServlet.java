@@ -61,7 +61,7 @@ public class ListeClientsServlet extends HttpServlet {
 		}
 		
 		HttpSession session = request.getSession();
-		session.setAttribute("ListSH", LC);
+		session.setAttribute("ListC", LC);
 		//request.setAttribute("ListeClients", ListeClients);
 
 		
