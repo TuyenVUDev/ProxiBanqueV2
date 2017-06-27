@@ -40,8 +40,9 @@
 	        <th>Prénom</th>
 	        <th>Email</th>
 	        <th>Adresse</th>
-	        <th>Compte Courant</th>
-	        <th>Compte Epargne</th>
+	        <th>Solde Courant</th>
+	        <th>Solde Epargne</th>
+	        <th></th>
 	        <th></th>
 	        <th></th>
 	      </tr>
@@ -53,12 +54,15 @@
 	    <td><% out.println(client.getNom());%></td>
 	    <td><% out.println(client.getPrenom());%></td>
 	    <td><% out.println(client.getEmail());%></td>
-	    <td><% out.println(client.getAdresse());%>
+	    <td><% out.println(client.getAdresse());%></td>
 	    <td><% out.println(client.getIdCompteCourant());%></td>
 	    <td><% out.println(client.getIdCompteEpargne());%></td>
+	    <td id=ajoutcompte><a href="AjoutCompteServlet?id=<%out.print(client.getId());%>">Ajouter un Compte</a></td>
 	    <td id=modifier><a href="ModificationClientServlet?id=<%out.print(client.getId());%>">Modifier</a></td>
 		<td id=supprimer><a href="">Supprimer</a></td>
+		</tr>
 		<%} %>
+		
 	    <%-- <c:forEach var="Cl" items="${ListC}">
 						<tr>
 					    <td><c:out value="${Cl.nom}"/></td>
