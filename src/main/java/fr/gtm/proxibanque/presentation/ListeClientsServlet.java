@@ -53,14 +53,16 @@ public class ListeClientsServlet extends HttpServlet {
 		
 		RequestDispatcher dispatcher;
 		
+		HttpSession session = request.getSession();
+		int id=(int) session.getAttribute("idConseiller");
+		
 		ConseillerClientCRUDService clientCrudService = new ConseillerClientCRUDService();
-		List<Client> LC = clientCrudService.lire(1);
+		List<Client> LC = clientCrudService.lire(id);
 		
 		for(Client client:LC){
 			System.out.println(client);
 		}
 		
-		HttpSession session = request.getSession();
 		session.setAttribute("ListC", LC);
 		//request.setAttribute("ListeClients", ListeClients);
 

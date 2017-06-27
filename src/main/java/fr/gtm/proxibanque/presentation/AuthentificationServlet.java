@@ -54,6 +54,9 @@ public class AuthentificationServlet extends HttpServlet {
 		String login = request.getParameter("login");
 		String password = request.getParameter("password");
 
+		GerantCRUDService gerantCRUDService= new GerantCRUDService();
+		
+
 		RequestDispatcher dispatcher;
 
 		AuthentificationService authentificationService = new AuthentificationService();
@@ -61,7 +64,9 @@ public class AuthentificationServlet extends HttpServlet {
 		boolean authentification = false;
 		boolean rep = authentificationService.authentification(login, password);
 		HttpSession session = request.getSession();
-		
+	
+		int idConseiller=gerantCRUDService.lire().stream().filter(c -> c.getLogin().equals(login)).map(c -> c.getId()).findAny().get();
+		session.setAttribute("idConseiller", idConseiller);
 		
 		if (rep == true) {
 			dispatcher = request.getRequestDispatcher("ListeClientsServlet");
