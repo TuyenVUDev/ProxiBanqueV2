@@ -19,7 +19,11 @@ import fr.gtm.proxibanque.domain.Conseiller;
 public class ConseillerClientCRUDDao extends AccesDao {
 
 	
-	
+	/**
+	 * ajout en base d'un client, retour d'un boolean
+	 * @param client
+	 * @return
+	 */
 	public boolean ajout(Client client) {
 		String nom = client.getNom();
 		String prenom = client.getPrenom();
@@ -67,7 +71,11 @@ public class ConseillerClientCRUDDao extends AccesDao {
 		}
 		return true;
 	}
-
+/**
+ * suppression en base d'un client
+ * @param id
+ * @return
+ */
 	public boolean supprimerById(int id) {
 
 		try {
@@ -98,7 +106,11 @@ public class ConseillerClientCRUDDao extends AccesDao {
 		}
 		return true;
 	}
-
+/**
+ * lecture d'un client en base, retour d'un objet Client
+ * @param id
+ * @return
+ */
 	public Client lireClientById(int id) {
 
 		String nom = "inconnu";
@@ -153,6 +165,11 @@ public class ConseillerClientCRUDDao extends AccesDao {
 		return client;
 	}
 
+	/**
+	 * Liste des clients lies a un conseiller
+	 * @param idConseillerCourant : id du conseiller
+	 * @return
+	 */
 	public ArrayList<Client> lireListe(int idConseillerCourant) {
 		ArrayList<Client> clients = new ArrayList<Client>();
 		String nom = "inconnu";
@@ -204,7 +221,10 @@ public class ConseillerClientCRUDDao extends AccesDao {
 		}
 		return clients;
 	}
-
+/**
+ * vide la table de clients, retourne un boolean
+ * @return
+ */
 	public boolean purgeTable() {
 		try {
 			// Etape 1 : chargement du driver
@@ -234,7 +254,12 @@ public class ConseillerClientCRUDDao extends AccesDao {
 		}
 		return true;
 	}
-
+/**
+ * modification des donnees client en base
+ * @param id
+ * @param client
+ * @return
+ */
 	public boolean modifierClient(int id, Client client) {
 		String nom = client.getNom();
 		String prenom = client.getPrenom();
