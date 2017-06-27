@@ -40,8 +40,8 @@
 	        <th>Prénom</th>
 	        <th>Email</th>
 	        <th>Adresse</th>
-	        <th>Solde Courant</th>
-	        <th>Solde Epargne</th>
+	        <th>id compte ourant</th>
+	        <th>id compte epargne</th>
 	        <th></th>
 	        <th></th>
 	        <th></th>
@@ -59,7 +59,7 @@
 	    <td><% out.println(client.getIdCompteEpargne());%></td>
 	    <td id=ajoutcompte><a href="AjoutCompteServlet?id=<%out.print(client.getId());%>">Ajouter un Compte</a></td>
 	    <td id=modifier><a href="ModificationClientServlet?id=<%out.print(client.getId());%>">Modifier</a></td>
-		<td id=supprimer><a href="">Supprimer</a></td>
+		<td id=supprimer><a href="SupprimerClientServlet?id=<%out.print(client.getId());%>">Supprimer</a></td>
 		</tr>
 		<%} %>
 		

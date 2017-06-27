@@ -6,11 +6,14 @@ import javax.persistence.GenerationType;
 
 import javax.persistence.Id;
 
-@Entity
+
+/**
+ * herite de personne
+ * @author Stagiaire
+ *
+ */
 public class Client extends Personne{
 	// proprietes
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id;
 	private String adresse, email;
 	private int idCompteEpargne;

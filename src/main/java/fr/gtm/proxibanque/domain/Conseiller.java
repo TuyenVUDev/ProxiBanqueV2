@@ -6,6 +6,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+/**
+ * herite de personne
+ * @author Stagiaire
+ *
+ */
 public class Conseiller extends Personne{
 
 	private int idConseiller;

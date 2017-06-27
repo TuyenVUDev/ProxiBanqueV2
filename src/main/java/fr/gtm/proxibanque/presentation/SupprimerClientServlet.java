@@ -5,12 +5,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import javax.servlet.annotation.WebServlet;
 import fr.gtm.proxibanque.domain.Client;
-import fr.gtm.proxibanque.service.AuthentificationService;
 import fr.gtm.proxibanque.service.ConseillerClientCRUDService;
-import fr.gtm.proxibanque.service.GerantCRUDService;
 
 import java.io.IOException;
 
@@ -18,14 +15,14 @@ import java.io.IOException;
  * Servlet implementation class MaServlet
  */
 
-@WebServlet(name = "AuthentificationServlet", urlPatterns = "/AuthentificationServlet")
-public class AuthentificationServlet extends HttpServlet {
+@WebServlet(name = "SupprimerClientServlet", urlPatterns = "/SupprimerClientServlet")
+public class SupprimerClientServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public AuthentificationServlet() {
+	public SupprimerClientServlet() {
 		super();
 	}
 
@@ -51,28 +48,14 @@ public class AuthentificationServlet extends HttpServlet {
 	public void traitement(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String login = request.getParameter("login");
-		String password = request.getParameter("password");
+		String id = request.getParameter("id");
+		int idClient = Integer.parseInt(id);
 
 		RequestDispatcher dispatcher;
+		ConseillerClientCRUDService clientCrudService = new ConseillerClientCRUDService();
+		boolean rep = clientCrudService.suppression(idClient);
 
-		AuthentificationService authentificationService = new AuthentificationService();
-		
-		boolean authentification = false;
-		boolean rep = authentificationService.authentification(login, password);
-		HttpSession session = request.getSession();
-		
-		
-		if (rep == true) {
-			dispatcher = request.getRequestDispatcher("ListeClientsServlet");
-			System.out.println("authentification ok");
-			authentification=true;
-			session.setAttribute("authentification", authentification);
-
-		} else {
-			dispatcher = request.getRequestDispatcher("indexEchoue.html");
-			System.out.println("authentification échouée");
-		}
+		dispatcher = request.getRequestDispatcher("ListeClientsServlet");
 
 		dispatcher.forward(request, response);
 	}

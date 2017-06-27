@@ -91,18 +91,18 @@ public class test2 {
 		System.out.println(gerantCRUDService.lire());
 
 		// modification d'info client
-		Client clientModifie = new Client("nomMod", "prenomMod", "adresseMod", "emailMod", 2);
-		conseillerClientCrudService.modification(1, clientModifie);
+//		Client clientModifie = new Client("nomMod", "prenomMod", "adresseMod", "emailMod", 2);
+//		conseillerClientCrudService.modification(1, clientModifie);
 //		System.out.println(conseillerClientCrudService.lire(1));
 
 		// modif d'info conseiller
-		Conseiller conseillerModif = new Conseiller("nomModif", "prenomModif", "loginModif", "paswdModif");
-		gerantCRUDService.modification(1, conseillerModif);
-		System.out.println(gerantCRUDService.lire());
+//		Conseiller conseillerModif = new Conseiller("nomModif", "prenomModif", "loginModif", "paswdModif");
+//		gerantCRUDService.modification(1, conseillerModif);
+//		System.out.println(gerantCRUDService.lire());
 
 		// virement compte à compte
 //		System.out.println(conseillerCompteCrudService.lire());
-		conseillerService.effectuerVirement(1, 2, 100.2);
+//		conseillerService.effectuerVirement(1, 2, 100.2);
 //		System.out.println(conseillerCompteCrudService.lire());
 
 		// validation de la lecture d'une liste de client d'un conseiller unique
