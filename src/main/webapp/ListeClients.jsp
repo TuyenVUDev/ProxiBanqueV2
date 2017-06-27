@@ -40,7 +40,7 @@
 	        <th>Prénom</th>
 	        <th>Email</th>
 	        <th>Adresse</th>
-	        <th>id compte ourant</th>
+	        <th>id compte courant</th>
 	        <th>id compte epargne</th>
 	        <th></th>
 	        <th></th>

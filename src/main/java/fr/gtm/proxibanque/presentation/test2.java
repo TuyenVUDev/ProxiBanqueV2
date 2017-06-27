@@ -121,5 +121,6 @@ public class test2 {
 		System.out.println(conseillerCompteCrudService.getIdCompteCourantAvecIdConseiller(1));
 		System.out.println(conseillerCompteCrudService.getIdCompteEpargneAvecIdConseiller(1));
 		System.out.println(conseillerCompteCrudService.getIdToutCompteAvecIdConseiller(1));
+		System.out.println(gerantCRUDService.lire().stream().filter(c -> c.getLogin().equals("login1")).map(c -> c.getId()).findAny().get());
 	}	
 }
