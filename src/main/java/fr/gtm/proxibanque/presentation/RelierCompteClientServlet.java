@@ -12,6 +12,7 @@ import fr.gtm.proxibanque.domain.Client;
 import fr.gtm.proxibanque.domain.Compte;
 import fr.gtm.proxibanque.service.ConseillerClientCRUDService;
 import fr.gtm.proxibanque.service.ConseillerCompteCRUDService;
+import fr.gtm.proxibanque.service.ConseillerService;
 
 import java.io.IOException;
 import java.util.List;
@@ -22,14 +23,14 @@ import java.util.List;
  */
 
 
-@WebServlet(name="AjoutCompteServlet", urlPatterns = "/AjoutCompteServlet" )
-public class AjoutCompteServlet extends HttpServlet {
+@WebServlet(name="RelierCompteClientServlet", urlPatterns = "/RelierCompteClientServlet" )
+public class RelierCompteClientServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AjoutCompteServlet() {
+    public RelierCompteClientServlet() {
         super();
     }
 
@@ -51,21 +52,15 @@ public class AjoutCompteServlet extends HttpServlet {
 	public void traitement(HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
 
 		int idClient = Integer.parseInt(request.getParameter("id"));
+		int idCompte = Integer.parseInt(request.getParameter("idC"));
 		
 		RequestDispatcher dispatcher;
 		
-		ConseillerCompteCRUDService compteCrudService = new ConseillerCompteCRUDService();
-		List<Compte> ListeCompte = compteCrudService.lire();
+		ConseillerService conseillerService = new ConseillerService();
+		conseillerService.associationCompte(idCompte, idClient);
 		
-		for(Compte compte:ListeCompte){
-			System.out.println(compte);
-		}
 		
-		HttpSession session = request.getSession();
-		session.setAttribute("ListeCompte", ListeCompte);
-		session.setAttribute("idClient", idClient);
-		
-		dispatcher=request.getRequestDispatcher("CreationCompte.jsp");
+		dispatcher=request.getRequestDispatcher("ListeClientsServlet");
 	
 		
 		dispatcher.forward(request,response);
