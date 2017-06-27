@@ -1,10 +1,10 @@
 <!DOCTYPE>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="fr.gtm.proxibanque.domain.Client"%>
-<%@ page import="fr.gtm.proxibanque.domain.Compte"%> 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="fr.gtm.proxibanque.domain.Compte"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <html>
 <head>
 <meta charset="iso-8859-1"/>
@@ -47,14 +47,14 @@
 	      </tr>
 	    </thead>
 	    <tbody>
-	     <c:forEach items="${ListeClients}" var="Client">
+	     <c:forEach var="Cl" items="${ListC}">
 						<tr>
-					    <td><c:out value="${Client.nom}"/></td>
-					    <td><c:out value="${Client.prenom}"/></td>
-					    <td><c:out value="${Client.email}"/></td>
-					    <td><c:out value="${Client.adresse}"/></td>
-					    <td><c:out value="${Client.idCompteCourant} : "/></td>
-					    <td><c:out value="${Client.idCompteEpargne} : "/></td>
+					    <td>${Cl.nom}</td>
+					    <td>${Cl.prenom}</td>
+					    <td>${Cl.email}</td>
+					    <td>${Cl.adresse}</td>
+					    <td>${Cl.idCompteCourant} : </td>
+					    <td>${Cl.idCompteEpargne} : </td>
 					    <td id=modifier><a href="">Modifier</a></td>
 					    <td id=supprimer><a href="">Supprimer</a></td>
 					    </tr>
