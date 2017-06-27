@@ -57,8 +57,8 @@
 	    <td><% out.println(client.getPrenom());%></td>
 	    <td><% out.println(client.getEmail());%></td>
 	    <td><% out.println(client.getAdresse());%></td>
-	    <td><% out.println(client.getIdCompteCourant());%>solde :<%out.print(cs.getSoldeCompteByID(client.getIdCompteCourant()));%></td>
-	    <td><% out.println(client.getIdCompteEpargne());%>solde :<%out.print(cs.getSoldeCompteByID(client.getIdCompteCourant()));%></td>
+	    <td>id : <% out.println(client.getIdCompteCourant());%> <%if(client.getIdCompteCourant()!=0){out.print("| solde : " + cs.getSoldeCompteByID(client.getIdCompteCourant())+ " euros");}else{out.print("");};%></td>
+	    <td>id : <% out.println(client.getIdCompteEpargne());%> <%if(client.getIdCompteEpargne()!=0){out.print("| solde : " + cs.getSoldeCompteByID(client.getIdCompteEpargne())+ " euros");}else{out.print("");};%></td>
 	    <td id=ajoutcompte><a href="AjoutCompteServlet?id=<%out.print(client.getId());%>">Ajouter un Compte</a></td>
 	    <td id=modifier><a href="ModificationClientServlet?id=<%out.print(client.getId());%>">Modifier</a></td>
 		<td id=supprimer><a href="SupprimerClientServlet?id=<%out.print(client.getId());%>">Supprimer</a></td>
