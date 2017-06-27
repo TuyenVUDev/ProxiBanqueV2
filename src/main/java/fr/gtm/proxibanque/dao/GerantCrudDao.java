@@ -17,6 +17,12 @@ import fr.gtm.proxibanque.domain.Conseiller;
 
 public class GerantCrudDao extends AccesDao {
 
+	/**
+	 * ajout d'un conseiller en base
+	 * 
+	 * @param conseiller
+	 * @return
+	 */
 	public boolean ajouter(Conseiller conseiller) {
 		String nom = conseiller.getNom();
 		String prenom = conseiller.getPrenom();
@@ -60,6 +66,12 @@ public class GerantCrudDao extends AccesDao {
 		return true;
 	}
 
+	/**
+	 * suppression d'un conseiller en base a partir de son id
+	 * 
+	 * @param id
+	 * @return
+	 */
 	public boolean supprimerById(int id) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("proxibanque-pu");
 		EntityManager em = emf.createEntityManager();
@@ -73,6 +85,13 @@ public class GerantCrudDao extends AccesDao {
 		return true;
 	}
 
+	/**
+	 * lecture d'un conseiller en base a partir de son id, retourne un opobjet
+	 * Conseiller
+	 * 
+	 * @param id
+	 * @return
+	 */
 	public Conseiller lireConseillerById(int id) {
 		String nom = "inconnu";
 		String prenom = "inconnu";
@@ -116,9 +135,13 @@ public class GerantCrudDao extends AccesDao {
 
 	}
 
+	/**
+	 * retourne la liste de tous les conseillers
+	 * @return
+	 */
 	public ArrayList<Conseiller> lireListe() {
 		ArrayList<Conseiller> conseillers = new ArrayList<Conseiller>();
-		String nom ;
+		String nom;
 		String prenom;
 		String login;
 		String paswd;
@@ -136,13 +159,13 @@ public class GerantCrudDao extends AccesDao {
 			rs = st.executeQuery(sql);
 			// etape 5 (parcours resultSet)
 			while (rs.next()) {
-				id=rs.getInt(1);
+				id = rs.getInt(1);
 				nom = rs.getString(2);
 				prenom = rs.getString(3);
-				login=rs.getString(4);
-				paswd=rs.getString(5);
-				
-				conseiller = new Conseiller(id,nom,prenom,login,paswd);
+				login = rs.getString(4);
+				paswd = rs.getString(5);
+
+				conseiller = new Conseiller(id, nom, prenom, login, paswd);
 				conseillers.add(conseiller);
 			}
 		} catch (SQLException e) {
@@ -160,7 +183,11 @@ public class GerantCrudDao extends AccesDao {
 		}
 		return conseillers;
 	}
-
+/**
+ * supprime de la base un conseiller d'apres son id
+ * @param id
+ * @return
+ */
 	public boolean suppression(int id) {
 		try {
 			// Etape 1 : chargement du driver
@@ -169,7 +196,7 @@ public class GerantCrudDao extends AccesDao {
 			cn = DriverManager.getConnection(url, log, passwd);
 			// etape 3 : creation d'un statement
 			st = cn.createStatement();
-			String sql = "DELETE FROM `conseillers` WHERE id = " + id ;
+			String sql = "DELETE FROM `conseillers` WHERE id = " + id;
 			// etape 4 = execution requete
 			st.executeUpdate(sql);
 			// etape 5 (parcours resultSet)
@@ -190,7 +217,10 @@ public class GerantCrudDao extends AccesDao {
 		}
 		return true;
 	}
-	
+/**
+ * vide la table conseillers
+ * @return
+ */
 	public boolean purgeTable() {
 		try {
 			// Etape 1 : chargement du driver
@@ -199,7 +229,7 @@ public class GerantCrudDao extends AccesDao {
 			cn = DriverManager.getConnection(url, log, passwd);
 			// etape 3 : creation d'un statement
 			st = cn.createStatement();
-			String sql = "TRUNCATE TABLE conseillers" ;
+			String sql = "TRUNCATE TABLE conseillers";
 			// etape 4 = execution requete
 			st.executeUpdate(sql);
 			// etape 5 (parcours resultSet)
@@ -220,9 +250,12 @@ public class GerantCrudDao extends AccesDao {
 		}
 		return true;
 	}
-	
-
-
+/**
+ * modification des infos d'un conseiller d'apres son id 
+ * @param id
+ * @param conseiller : objet avec les nouvelles proprietes
+ * @return
+ */
 	public boolean modifierConseiller(int id, Conseiller conseiller) {
 		String nom = conseiller.getNom();
 		String prenom = conseiller.getPrenom();
@@ -263,6 +296,5 @@ public class GerantCrudDao extends AccesDao {
 		}
 		return true;
 	}
-	
-	
+
 }

@@ -9,7 +9,11 @@ import fr.gtm.proxibanque.domain.Compte;
 import fr.gtm.proxibanque.domain.Conseiller;
 
 public class ConseillerCompteCRUDDao extends AccesDao{
-
+/**
+ * ajout dun compte en base
+ * @param compte
+ * @return
+ */
 	public boolean ajout(Compte compte) {
 
 		String typeDeCompte=compte.getTypeDeCompte();
@@ -51,7 +55,11 @@ public class ConseillerCompteCRUDDao extends AccesDao{
 		}
 		return true;
 	}
-	
+	/**
+	 * lecture d'un compte en base a partir de l'id, retourne un compte
+	 * @param id
+	 * @return
+	 */
 	public Compte lireById(int id){
 		String typeDeCompte = "inconnu";
 		double solde = 0;
@@ -89,7 +97,10 @@ public class ConseillerCompteCRUDDao extends AccesDao{
 		}
 		return compte;
 	}
-	
+	/**
+	 * retourne la liste de tous les comptes en base
+	 * @return
+	 */
 	public ArrayList<Compte> lireListe(){
 		
 		ArrayList<Compte> comptes = new ArrayList<Compte>();
@@ -132,7 +143,11 @@ public class ConseillerCompteCRUDDao extends AccesDao{
 		return comptes;
 		
 	}
-	
+	/**
+	 * suppression en base d'un compte a partir de son id
+	 * @param id
+	 * @return
+	 */
 	public boolean suppression(int id) {
 		try {
 			// Etape 1 : chargement du driver
@@ -162,6 +177,10 @@ public class ConseillerCompteCRUDDao extends AccesDao{
 		}
 		return true;
 	}
+	/**
+	 * vide la table des comptes
+	 * @return
+	 */
 	public boolean purgeTable() {
 		try {
 			// Etape 1 : chargement du driver
@@ -192,6 +211,12 @@ public class ConseillerCompteCRUDDao extends AccesDao{
 		return true;
 	}
 	
+	/**
+	 * modification du solde d'un compte avec l'id du compte et la valeur du nouveau solde
+	 * @param id
+	 * @param nouveauSolde
+	 * @return
+	 */
 	public boolean modifierSoldeCompte(int id, double nouveauSolde) {
 		
 

@@ -12,29 +12,34 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
-
-
 import fr.gtm.proxibanque.domain.Client;
 import fr.gtm.proxibanque.domain.Compte;
 import fr.gtm.proxibanque.domain.Conseiller;
 
-public class ConseillerDao extends AccesDao{
+public class ConseillerDao extends AccesDao {
 
 	ConseillerClientCRUDDao conseillerClientCRUDDao = new ConseillerClientCRUDDao();
 	ConseillerCompteCRUDDao conseillerCompteCRUDDao = new ConseillerCompteCRUDDao();
-	
+
+	/**
+	 * association en base de l'id d'un compte courant dans les proprietes d'un
+	 * client
+	 * 
+	 * @param idCompte
+	 * @param idClient
+	 * @return
+	 */
 	public boolean associerCompteCourant(int idCompte, int idClient) {
-		
-		
+
 		try {
 			// Etape 1 : chargement du driver
 			Class.forName("com.mysql.jdbc.Driver");
 			// etape 2 : recuperation de la connection
 			cn = DriverManager.getConnection(url, log, passwd);
 			// etape 3 : creation d'un statement
-			st=cn.createStatement();
+			st = cn.createStatement();
 			// etape 4 = execution requete
-			String sql = "UPDATE `clients` SET `idCompteCourant`="+idCompte+" WHERE id="+idClient;
+			String sql = "UPDATE `clients` SET `idCompteCourant`=" + idCompte + " WHERE id=" + idClient;
 			st.executeUpdate(sql);
 			// etape 5 (parcours resultSet)
 		} catch (SQLException e) {
@@ -54,19 +59,24 @@ public class ConseillerDao extends AccesDao{
 		}
 		return true;
 	}
-	
-	
-public boolean associerCompteEpargne(int idCompte, int idClient) {
-		
+
+	/**
+	 * association en base de l'id d'un compte epargne dans les proprietes d'un client
+	 * @param idCompte
+	 * @param idClient
+	 * @return
+	 */
+	public boolean associerCompteEpargne(int idCompte, int idClient) {
+
 		try {
 			// Etape 1 : chargement du driver
 			Class.forName("com.mysql.jdbc.Driver");
 			// etape 2 : recuperation de la connection
 			cn = DriverManager.getConnection(url, log, passwd);
 			// etape 3 : creation d'un statement
-			st=cn.createStatement();
+			st = cn.createStatement();
 			// etape 4 = execution requete
-			String sql = "UPDATE `clients` SET `idCompteEpargne`="+idCompte+" WHERE id="+idClient;
+			String sql = "UPDATE `clients` SET `idCompteEpargne`=" + idCompte + " WHERE id=" + idClient;
 
 			st.executeUpdate(sql);
 
