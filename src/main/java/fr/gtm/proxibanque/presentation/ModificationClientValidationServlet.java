@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.annotation.WebServlet;
 import fr.gtm.proxibanque.domain.Client;
 import fr.gtm.proxibanque.service.ConseillerClientCRUDService;
+import javassist.expr.Cast;
 
 import java.io.IOException;
 
@@ -18,14 +19,14 @@ import java.io.IOException;
  */
 
 
-@WebServlet(name="AjoutClientServlet", urlPatterns = "/AjoutClientServlet" )
-public class AjoutClientServlet extends HttpServlet {
+@WebServlet(name="ModificationClientValidationServlet", urlPatterns = "/ModificationClientValidationServlet" )
+public class ModificationClientValidationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AjoutClientServlet() {
+    public ModificationClientValidationServlet() {
         super();
     }
 
@@ -50,19 +51,17 @@ public class AjoutClientServlet extends HttpServlet {
 		String prenom = request.getParameter("prenom");
 		String adresse = request.getParameter("adresse");
 		String email = request.getParameter("email");
-		
-		System.out.println(nom+prenom+adresse+email);
+		int idClient = Integer.parseInt(request.getParameter("id"));
 		
 		RequestDispatcher dispatcher;
 		ConseillerClientCRUDService clientCrudService = new ConseillerClientCRUDService();
-		Client client = new Client(nom, prenom, adresse, email, 1);
-		boolean rep=clientCrudService.ajout(client);
-		
+		Client clientModifie = new Client(nom, prenom, adresse, email, 1);
+		boolean rep=clientCrudService.modification(idClient, clientModifie);
 
 		if (rep==true){
-			dispatcher=request.getRequestDispatcher("CreationClient.html");
+			dispatcher=request.getRequestDispatcher("ListeClientsServlet");
 		}else{
-			dispatcher=request.getRequestDispatcher("CreationClient.html");
+			dispatcher=request.getRequestDispatcher("ListeClientsServlet");
 		}
 		
 		dispatcher.forward(request,response);

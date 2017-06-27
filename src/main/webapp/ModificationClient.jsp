@@ -21,43 +21,47 @@
 			<img src="CSS/images/Proxibanque.jpg" alt="proxilogo" id=logo>
 		</div>
 	</div>
+	<% Client client = (Client) session.getAttribute("client"); %>
 	<nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <ul class="nav navbar-nav">
       <li><a href="ListeClients.jsp">Liste des Clients</a></li>
       <li><a href="CreationClient.html">Créer un nouveau Client</a></li>
       <li><a href="Virement.jsp">Effectuer un Virement</a></li>
-      <li class="act"><a href="#">Modification du Client: ${Client.prenom} ${Client.nom}</a></li>
+      <li class="act"><a href="#">Modification du Client: <%out.print(client.getNom());%> <%out.print(client.getPrenom());%></a></li>
     </ul>
   </div>
 </nav>
 
-
-
-
-<form class="form-horizontal" id=form1 action = "ModificationClientServlet" method = POST>
+<form class="form-horizontal" id=form1 action ="ModificationClientValidationServlet" method = POST>
+  <div class="form-group">
+    <label class="control-label col-sm-2" for="id">ID :</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" placeholder="id" name="id" value="<%out.print(client.getId());%>">
+    </div>
+  </div>
   <div class="form-group">
     <label class="control-label col-sm-2" for="nom">Nom :</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" placeholder="nom" name="nom" value="${Client.nom}">
+      <input type="text" class="form-control" placeholder="nom" name="nom" value="<%out.print(client.getNom());%>">
     </div>
   </div>
   <div class="form-group">
     <label class="control-label col-sm-2" for="prenom">Prénom :</label>
     <div class="col-sm-10"> 
-      <input type="text" class="form-control" placeholder="prenom" name="prenom" value="${Client.prenom}">
+      <input type="text" class="form-control" placeholder="prenom" name="prenom" value="<%out.print(client.getPrenom());%>">
     </div>
   </div>
   <div class="form-group">
     <label class="control-label col-sm-2" for="adresse">Adresse :</label>
     <div class="col-sm-10"> 
-      <input type="text" class="form-control" placeholder="adresse" name = "adresse" value="${Client.adresse}">
+      <input type="text" class="form-control" placeholder="adresse" name = "adresse" value="<%out.print(client.getAdresse());%>">
     </div>
   </div>
     <div class="form-group">
     <label class="control-label col-sm-2" for="email">Email :</label>
     <div class="col-sm-10"> 
-      <input type="email" class="form-control" placeholder="email" name ="email" value="${Client.email}">
+      <input type="email" class="form-control" placeholder="email" name ="email" value="<%out.print(client.getEmail());%>">
     </div>
   </div>
   <div class="form-group"> 

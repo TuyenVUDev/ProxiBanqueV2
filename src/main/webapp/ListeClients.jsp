@@ -56,7 +56,7 @@
 	    <td><% out.println(client.getAdresse());%>
 	    <td><% out.println(client.getIdCompteCourant());%></td>
 	    <td><% out.println(client.getIdCompteEpargne());%></td>
-	    <td id=modifier><a href="">Modifier</a></td>
+	    <td id=modifier><a href="ModificationClientServlet?id=<%out.print(client.getId());%>">Modifier</a></td>
 		<td id=supprimer><a href="">Supprimer</a></td>
 		<%} %>
 	    <%-- <c:forEach var="Cl" items="${ListC}">

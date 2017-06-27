@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.annotation.WebServlet;
 import fr.gtm.proxibanque.domain.Client;
 import fr.gtm.proxibanque.service.ConseillerClientCRUDService;
@@ -47,22 +48,21 @@ public class ModificationClientServlet extends HttpServlet {
 
 	public void traitement(HttpServletRequest request, HttpServletResponse response ) throws ServletException, IOException {
 
-		String nom = request.getParameter("nom");
-		String prenom = request.getParameter("prenom");
-		String adresse = request.getParameter("adresse");
-		String email = request.getParameter("email");
-		int idClient = Integer.parseInt(request.getParameter("idClient"));
-		
 		RequestDispatcher dispatcher;
-		ConseillerClientCRUDService clientCrudService = new ConseillerClientCRUDService();
-		Client clientModifie = new Client(nom, prenom, adresse, email, 1);
-		boolean rep=clientCrudService.modification(idClient, clientModifie);
+		
+		int idClient = Integer.parseInt(request.getParameter("id"));
+		
+		
+		ConseillerClientCRUDService ccCRUD = new ConseillerClientCRUDService();
+		Client client = ccCRUD.lireById(idClient);
+	
+		HttpSession session = request.getSession();
+		session.setAttribute("client", client);
+	
 
-		if (rep==true){
-			dispatcher=request.getRequestDispatcher("ListeClients.jsp");
-		}else{
-			dispatcher=request.getRequestDispatcher("ListeClients.jsp");
-		}
+		
+		dispatcher=request.getRequestDispatcher("ModificationClient.jsp");
+	
 		
 		dispatcher.forward(request,response);
 	}
